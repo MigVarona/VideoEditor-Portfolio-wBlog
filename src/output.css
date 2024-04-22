@@ -553,3 +553,19 @@ video {
   --tw-contain-paint:  ;
   --tw-contain-style:  ;
 }
+
+.ml-20 {
+  margin-left: 5rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.ml-40 {
+  margin-left: 10rem;
+}
+
+.mt-40 {
+  margin-top: 10rem;
+}
