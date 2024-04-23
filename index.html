@@ -93,17 +93,12 @@
 			/* Cambiar el color de fondo al pasar el ratón */
 		}
 
-		@media (min-width: 800px) {
-			.news-container {
-				justify-content: center;
-				/* Centrar las tarjetas horizontalmente */
-			}
-
-			.card {
-				margin-right: 16px;
-				/* Espacio entre tarjetas */
-			}
-		}
+		@media (max-width: 800px) {
+  .card {
+    width: 100%; /* Cambiar el ancho de las tarjetas al 100% para ocupar toda la columna en tamaños pequeños de pantalla */
+    margin-right: 0; /* Eliminar el margen derecho para que las tarjetas se ajusten correctamente */
+  }
+}
 	</style>
 </head>
 
@@ -112,9 +107,9 @@
 	<div class="news-container" id="news-list"></div>
 
 	<script>
-		const apiKey = '7ec73bb87fb74bc99d88cf55e0f90765'; // Reemplaza 'TU_CLAVE_API' con tu clave API de News API
+		const apiKey = '7ec73bb87fb74bc99d88cf55e0f90765'; 
 
-		fetch(`https://newsapi.org/v2/everything?q=memes&from=2024-03-23&sortBy=publishedAt&language=en&apiKey=${apiKey}`)
+		fetch(`https://newsapi.org/v2/everything?q=madrid&from=2024-04-22&sortBy=publishedAt&language=en&apiKey=${apiKey}`)
 			.then(response => response.json())
 			.then(data => {
 				const newsList = document.getElementById('news-list');
