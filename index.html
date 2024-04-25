@@ -2,35 +2,34 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Noticias</title>
-	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+
 </head>
 
 <body>
-	<h1>Últimas noticias</h1>
-	<div class="news-container" id="news-list"></div>
+    <h1>Últimas noticias</h1>
+    <div class="news-container" id="news-list"></div>
 
-	<script>
-		const url = 'https://13ghoklkt4.execute-api.us-east-1.amazonaws.com/test/';
+    <script>
+        const url = 'https://13ghoklkt4.execute-api.us-east-1.amazonaws.com/test/get';
 
-fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Respuesta de la API:');
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Ocurrió un error:', error);
-  });
-
-	</script>
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('La solicitud falló');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Respuesta de la API:', data);
+                // Aquí puedes manipular los datos y mostrarlos en tu página HTML si lo deseas
+            })
+            .catch(error => {
+                console.error('Ocurrió un error:', error);
+            });
+    </script>
 </body>
 
 </html>
