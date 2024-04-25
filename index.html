@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias</title>
-
 </head>
 
 <body>
@@ -13,7 +12,7 @@
     <div class="news-container" id="news-list"></div>
 
     <script>
-        const url = 'https://13ghoklkt4.execute-api.us-east-1.amazonaws.com/test/get';
+        const url = 'https://jqri7bnjz1.execute-api.us-east-1.amazonaws.com/test';
 
         fetch(url)
             .then(response => {
@@ -24,7 +23,17 @@
             })
             .then(data => {
                 console.log('Respuesta de la API:', data);
-                // Aquí puedes manipular los datos y mostrarlos en tu página HTML si lo deseas
+                // Crear elementos HTML para cada noticia y agregarlos al contenedor
+                const newsList = document.getElementById('news-list');
+                data.forEach(pet => {
+                    const petElement = document.createElement('div');
+                    petElement.innerHTML = `
+                        <h2>${pet.name}</h2>
+                        <p>Especie: ${pet.species}</p>
+                        <p>Raza: ${pet.breed}</p>
+                    `;
+                    newsList.appendChild(petElement);
+                });
             })
             .catch(error => {
                 console.error('Ocurrió un error:', error);
