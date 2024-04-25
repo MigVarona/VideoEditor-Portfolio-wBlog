@@ -5,101 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Noticias</title>
-	<style>
-		.news-container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			text-decoration: none;
-			/* Quitar subrayado del enlace */
-			height: auto;
-			/* Mantener la proporción de aspecto */
-			color: black;
-
-
-		}
-
-		.card {
-			height: auto;
-			/* Mantener la proporción de aspecto */
-			text-decoration: none;
-			/* Quitar subrayado del enlace */
-			color: black;
-
-
-
-			border: 1px solid #ccc;
-			border-radius: 8px;
-			padding: 16px;
-			margin-bottom: 16px;
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-			max-width: 500px;
-			/* Ancho máximo de la tarjeta */
-			width: calc(50% - 8px);
-			/* Ancho de cada tarjeta (50% del contenedor - espacio entre tarjetas) */
-			overflow: hidden;
-			/* Ocultar el contenido que sobrepasa la altura */
-			transition: box-shadow 0.3s;
-			/* Transición suave del efecto de sombra */
-		}
-
-		.card:hover {
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-			/* Añadir efecto de sombra al pasar el ratón */
-		}
-
-		.card img {
-			max-width: 100%;
-			/* Ajustar la imagen al ancho del contenedor */
-			height: auto;
-			/* Mantener la proporción de aspecto */
-			border-radius: 8px;
-			margin-bottom: 8px;
-			/* Agregar un espacio más pequeño entre la imagen y el texto */
-		}
-
-		.card h2 {
-			margin-top: 0;
-			margin-bottom: 8px;
-			/* Agregar un pequeño espacio entre el título y la descripción */
-			font-size: 1.2em;
-			/* Tamaño de fuente ligeramente más grande */
-		}
-
-		.card p {
-			margin: 0;
-			/* Eliminar márgenes para la descripción */
-			font-size: 1em;
-			/* Tamaño de fuente normal */
-			line-height: 1.5;
-			/* Altura de línea aumentada para una mejor legibilidad */
-		}
-
-		.card a {
-			display: block;
-			/* Convertir la tarjeta en un bloque para que sea un enlace */
-			padding: 16px;
-			/* Agregar espacio alrededor del enlace */
-			color: inherit;
-			/* Usar el color de texto por defecto */
-			text-decoration: none;
-			/* Quitar subrayado del enlace */
-			transition: background-color 0.3s;
-			/* Transición suave del color de fondo */
-		}
-
-		.card a:hover {
-			background-color: #f0f0f0;
-			/* Cambiar el color de fondo al pasar el ratón */
-		}
-
-		@media (max-width: 800px) {
-  .card {
-    width: 100%; /* Cambiar el ancho de las tarjetas al 100% para ocupar toda la columna en tamaños pequeños de pantalla */
-    margin-right: 0; /* Eliminar el margen derecho para que las tarjetas se ajusten correctamente */
-  }
-}
-	</style>
+	
 </head>
 
 <body>
@@ -107,30 +13,23 @@
 	<div class="news-container" id="news-list"></div>
 
 	<script>
-		const apiKey = '7ec73bb87fb74bc99d88cf55e0f90765'; 
+		const url = 'https://13ghoklkt4.execute-api.us-east-1.amazonaws.com/test/';
 
-		fetch(`https://newsapi.org/v2/everything?q=madrid&from=2024-04-22&sortBy=publishedAt&language=en&apiKey=${apiKey}`)
-			.then(response => response.json())
-			.then(data => {
-				const newsList = document.getElementById('news-list');
-				data.articles.forEach(article => {
-					// Filtrar los artículos que no tengan "removed" en el título
-					if (!article.title.toLowerCase().includes("removed") && article.description !== null) {
-						const articleElement = document.createElement('a'); // Cambiar el elemento a un enlace
-						articleElement.href = article.url; // Establecer la URL del enlace
-						articleElement.classList.add('card'); // Agregar la clase 'card' para dar estilo a la tarjeta
-						articleElement.innerHTML = `
-              <h2>${article.title}</h2>
-              <img src="${article.urlToImage}" alt="${article.title}">
-              <p>${article.description}</p>
-            `;
-						newsList.appendChild(articleElement);
-					}
-				});
-			})
-			.catch(error => {
-				console.error('Error al obtener noticias:', error);
-			});
+fetch(url)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Respuesta de la API:');
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Ocurrió un error:', error);
+  });
+
 	</script>
 </body>
 
