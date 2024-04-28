@@ -2089,7 +2089,7 @@ textarea.w-input, textarea.w-select {
   --black: black;
   --primary-light: #f1f1ef;
   --paragraph-gray: #adadad;
-  --primary: #a594fd;
+  --primary: #d4c903;
   --light-gray: #f1f1ef;
   --primary-dark: #101010;
   --white: white;
@@ -5500,8 +5500,7 @@ figure {
 
 .stroke-title {
   color: var(--black);
-  text-shadow: 0 -1px 0 var(--primary), 1px 0 0 var(--primary), 0 1px 0 var(--primary), -1px 0 0 var(--primary);
-  white-space: nowrap;
+  text-shadow: 0 -1px 0 #f6fd94, 1px 0 0 #f6fd94, 0 1px 0 #f6fd94, -1px 0 0 #f6fd94;  white-space: nowrap;
   margin-left: 35px;
   margin-right: 35px;
   font-size: 120px;
