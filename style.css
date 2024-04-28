@@ -2089,7 +2089,7 @@ textarea.w-input, textarea.w-select {
   --black: black;
   --primary-light: #f1f1ef;
   --paragraph-gray: #adadad;
-  --primary: #cca355;
+  --primary: #cca355 !important;
   --light-gray: #f1f1ef;
   --primary-dark: #101010;
   --white: white;
