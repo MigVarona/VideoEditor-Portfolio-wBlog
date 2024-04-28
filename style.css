@@ -5431,10 +5431,18 @@ figure {
 }
 
 .small-video {
-  z-index: 20;
-  width: 100%;
-  height: 100%;
+  width: 100%; 
+  max-width: 800px; 
+  margin: 0 auto; 
+  overflow: hidden; 
 }
+
+.small-video video {
+  width: 100%; 
+  height: auto; 
+  display: block; 
+}
+
 
 .page-content-wrapper {
   background-color: var(--black);

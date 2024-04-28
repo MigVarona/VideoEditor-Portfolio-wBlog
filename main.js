@@ -2485,7 +2485,6 @@ __p+='`),
     })("versions", []).push({
       version: "3.19.0",
       mode: gI ? "pure" : "global",
-      copyright: "\xA9 2021 Denis Pushkarev (zloirock.ru)",
     });
   });
   var vc = c((YH, gc) => {
@@ -12688,36 +12687,7 @@ __p+='`),
   t_();
   n_();
 })();
-/*!
- * tram.js v0.8.2-global
- * Cross-browser CSS3 transitions in JavaScript
- * https://github.com/bkwld/tram
- * MIT License
- */
-/*!
- * Webflow._ (aka) Underscore.js 1.6.0 (custom build)
- *
- * http://underscorejs.org
- * (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Underscore may be freely distributed under the MIT license.
- * @license MIT
- */
-/*! Bundled license information:
 
-timm/lib/timm.js:
-  (*!
-   * Timm
-   *
-   * Immutability helpers with fast reads and acceptable writes.
-   *
-   * @copyright Guillermo Grau Panea 2016
-   * @license MIT
-   *)
-*/
-/**
- * ----------------------------------------------------------------------
- * Webflow: Interactions 2.0: Init
- */
 Webflow.require("ix2").init({
   events: {
     "e-736": {
@@ -37505,15 +37475,7 @@ Webflow.require("ix2").init({
           appliesTo: "CLASS",
         },
       ],
-      config: {
-        loop: false,
-        playInReverse: false,
-        scrollOffsetValue: 0,
-        scrollOffsetUnit: "%",
-        delay: 250,
-        direction: "BOTTOM",
-        effectIn: true,
-      },
+     
       createdOn: 1712866568626,
     },
     "e-3678": {
