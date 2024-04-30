@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTMX CORS Request Example</title>
+  <script src="https://unpkg.com/htmx.org@1.6.0/dist/htmx.min.js"></script>
+</head>
+<body>
+
+<script>
+const url = 'https://crossorigin.me/https://webextendida.es/chatProdAgencia.php?question=';
+
+fetch(url)
+  .then(response => response.text())
+  .then(data => {
+    console.log(data); // Aquí puedes manejar la respuesta del servidor
+  })
+  .catch(error => {
+    console.error('Hubo un problema con la operación fetch:', error);
+  });
+
+
+
+</script>
+
+</body>
+</html>
