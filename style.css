@@ -9928,3 +9928,16 @@ figure {
   font-style: normal;
   font-display: swap;
 }
+
+  @media (min-width: 640px) {
+    .hero-project .background-video video:nth-child(2) {
+        display: none;
+    }
+}
+
+
+@media (max-width: 639px) {
+    .hero-project .background-video video:nth-child(1) {
+        display: none;
+    }
+}
