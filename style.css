@@ -2197,6 +2197,10 @@ h2 {
   line-height: 1.2em;
 }
 
+.margen {
+  margin-right: 75px !important;
+}
+
 h3 {
   color: var(--primary-light);
   letter-spacing: -.02em;
