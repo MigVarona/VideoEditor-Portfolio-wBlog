@@ -199,8 +199,10 @@ td, th {
   content: "î˜‚";
 }
 
-.w-icon-arrow-down:before, .w-icon-dropdown-toggle:before {
-  content: "î˜ƒ";
+.w-icon-arrow-down::before, .w-icon-dropdown-toggle::before {
+  content: "\f078"; /* Unicode para el icono de flecha hacia abajo de Font Awesome */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
 }
 
 .w-icon-file-upload-remove:before {
