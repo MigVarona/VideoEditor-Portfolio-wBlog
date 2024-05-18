@@ -2375,7 +2375,7 @@ figure {
   overflow: hidden;
 }
 
-.section.who-we-are {
+c {
   padding-top: 0;
   overflow: hidden;
 }
@@ -5446,7 +5446,7 @@ figure {
 }
 
 .cta-section {
-  padding-top: 160px;
+  padding-top: 50px;
 }
 
 .cta {
