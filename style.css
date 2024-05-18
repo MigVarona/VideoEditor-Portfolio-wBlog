@@ -2315,8 +2315,8 @@ figure {
 }
 
 .section {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  
+  padding-bottom: 1px;
   position: relative;
 }
 
@@ -7020,8 +7020,7 @@ c {
 
 @media screen and (min-width: 1280px) {
   .section {
-    padding-top: 130px;
-    padding-bottom: 130px;
+    padding-top: -130px;
   }
 
   .section.inner-banner {
@@ -8423,10 +8422,7 @@ c {
     font-size: 25px;
   }
 
-  .section {
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
+
 
   .section.landing-banner {
     padding-top: 120px;
@@ -9991,5 +9987,10 @@ c {
   margin-left: 10px; /* Ajusta el valor según tu preferencia */
 }
 
-
-
+/* Define media query for large screens */
+@media (min-width: 1024px) {
+  .large-screen-margin-left {
+      margin-left: 200px;
+      width: 400px;
+  }
+}
