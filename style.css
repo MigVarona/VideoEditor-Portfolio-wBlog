@@ -9943,5 +9943,9 @@ c {
     }
 }
 
-
+@media (max-width: 600px) {
+  .overflow img {
+      width: 20px; /* tamaño reducido para pantallas pequeñas */
+  }
+}
 
