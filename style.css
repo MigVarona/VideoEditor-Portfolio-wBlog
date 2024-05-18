@@ -9946,3 +9946,50 @@ c {
 }
 
 
+.footer {
+  margin-top: 20px;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.social-icons {
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icon {
+
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #ddd;
+}
+
+
+.footer-line {
+  border: none; 
+  height: 1px; 
+  background-color: #ffffff; 
+  margin: 10px 0; 
+}
+
+.footer-text {
+  font-size: 13px; 
+}
+
+.social-icon + .social-icon {
+  margin-left: 10px; /* Ajusta el valor según tu preferencia */
+}
+
+
+
