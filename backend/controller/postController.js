@@ -24,8 +24,14 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
+  // Imprimir el cuerpo de la solicitud para depurar
+  console.log('Request body:', req.body);
+
+  // Crear un nuevo objeto Post con los datos recibidos
   const post = new Post(req.body);
+  
   try {
+    // Guardar el nuevo post en la base de datos
     const newPost = await post.save();
     res.status(201).json(newPost);
   } catch (error) {

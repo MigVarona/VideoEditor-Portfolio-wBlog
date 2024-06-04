@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Blog Post</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label, input, textarea, button {
+            margin-bottom: 1em;
+            color: #fff;
+        }
+
+        input, textarea {
+            background-color: #333;
+            border: 1px solid #666;
+            padding: 10px;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #00f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #00a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create New Blog Post</h1>
+    <form id="create-post-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+
+        <label for="image">Image URL:</label>
+        <input type="url" id="image" name="imageUrl" required>
+
+        <label for="video">Video URL:</label>
+        <input type="url" id="video" name="videoUrl">
+
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" rows="10" required></textarea>
+
+        <label for="content2">Additional Content:</label>
+        <textarea id="content2" name="content2" rows="10"></textarea>
+
+        <button type="submit">Create Post</button>
+    </form>
+    <script>
+        document.getElementById('create-post-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                title: document.getElementById('title').value,
+                date: document.getElementById('date').value,
+                category: document.getElementById('category').value,
+                imageUrl: document.getElementById('image').value,
+                videoUrl: document.getElementById('video').value,
+                content: document.getElementById('content').value,
+                content2: document.getElementById('content2').value // Agrega el campo content2 al formData
+            };
+
+            fetch('http://localhost:3000/api/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Post created successfully!');
+                // Opcionalmente, redirigir a la lista de posts o limpiar el formulario
+            })
+            .catch(error => {
+                console.error('Error creating post:', error);
+                alert('Failed to create post.');
+            });
+        });
+    </script>
+</body>
+</html>
