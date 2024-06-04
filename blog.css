@@ -3171,10 +3171,7 @@ html {
     line-height: 24px;
   }
   
-  a {
-    color: var(--white);
-    text-decoration: underline;
-  }
+
   
   ul, ol {
     margin-top: 0;
