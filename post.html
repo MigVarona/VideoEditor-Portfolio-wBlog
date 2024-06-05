@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- This site was created in Webflow. https://www.webflow.com --><!-- Last Published: Mon Nov 13 2023 12:40:33 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-page="66095c4f9765fb9eae51e7eb">
 
 
@@ -14,11 +13,9 @@
 
 
     <meta content="Blog Explained in Instagram Photos" property="twitter:title" />
-    <meta content="But because those who do not know how to pursue pleasure rationally encounter."
-        property="twitter:description" />
+   
 
     <meta property="og:type" content="website" />
-    <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" href="style.css">
     <link href="blog.css" rel="stylesheet" type="text/css" />
@@ -269,8 +266,9 @@
     } else {
         fetch('http://localhost:3000/api/posts', {
             headers: {
-                'Authorization': `Bearer ${token}`
-            }
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
         })
                 .then(response => {
                     if (!response.ok) {
