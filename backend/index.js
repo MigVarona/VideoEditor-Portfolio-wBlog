@@ -5,6 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // Importa jsonwebtoken
 const User = require('./models/user');
+const routes = require('./routes/routes');
 
 dotenv.config();
 
@@ -62,7 +63,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Rutas protegidas
-app.use('/api/posts', authenticateToken, require('./routes/routes'));
+app.use('/api/posts', require('./routes/routes'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
