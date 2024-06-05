@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="login.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        input {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+
 </head>
-<body>
-    <h2>Login</h2>
-    <form id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
+
+<body  class="bg-custom h-screen flex items-center justify-center">
+    <form id="login-form" class="w-full max-w-sm bg p-8 rounded-lg shadow-md">
+        <div class="mb-5">
+            <label for="username" class="block mb-2 text-sm font-medium text-white">Username</label>
+            <input type="text" id="username" name="username"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Username" required />
+        </div>
+        <div class="mb-5">
+            <label for="password" class="block mb-2 text-sm font-medium text-white">Password</label>
+            <input type="password" id="password" name="password"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                required />
+        </div>
+        <button type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Login</button>
     </form>
+
 
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
@@ -66,6 +48,8 @@
             .then(response => response.json())
             .then(data => {
                 if (data.message === 'Login successful') {
+                    // Guardar el token en localStorage
+                    localStorage.setItem('token', data.token);
                     // Redirigir a la página de administración si el inicio de sesión es exitoso
                     window.location.href = 'admin.html';
                 } else {
@@ -78,5 +62,7 @@
             });
         });
     </script>
+    
 </body>
+
 </html>
