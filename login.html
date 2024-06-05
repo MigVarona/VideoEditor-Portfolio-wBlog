@@ -30,14 +30,14 @@
 
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', function (event) {
+        document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
-
+    
             const formData = {
                 username: document.getElementById('username').value,
                 password: document.getElementById('password').value
             };
-
+    
             fetch('http://localhost:3000/api/login', {
                 method: 'POST',
                 headers: {
@@ -45,21 +45,24 @@
                 },
                 body: JSON.stringify(formData)
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message === 'Login successful') {
-                        // Redirigir a la página de administración si el inicio de sesión es exitoso
-                        window.location.href = 'admin.html';
-                    } else {
-                        alert(data.message); // Mostrar un mensaje si el inicio de sesión falla
-                    }
-                })
-                .catch(error => {
-                    console.error('Error during login:', error);
-                    alert('Failed to login. Please try again.');
-                });
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Login successful') {
+                    // Guardar el token en localStorage
+                    localStorage.setItem('token', data.token);
+                    // Redirigir a la página de administración si el inicio de sesión es exitoso
+                    window.location.href = 'admin.html';
+                } else {
+                    alert(data.message); // Mostrar un mensaje si el inicio de sesión falla
+                }
+            })
+            .catch(error => {
+                console.error('Error during login:', error);
+                alert('Failed to login. Please try again.');
+            });
         });
     </script>
+    
 </body>
 
 </html>

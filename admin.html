@@ -1,5 +1,14 @@
 <html lang="en">
 <head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('You must be logged in to access this page.');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Blog Post</title>
@@ -52,6 +61,8 @@
 </head>
 <body>
     <h1>Create New Blog Post</h1>
+    <button id="logout-button">Logout</button>
+
     <form id="create-post-form">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
@@ -80,6 +91,7 @@
         document.getElementById('create-post-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
+            const token = localStorage.getItem('token');
             const formData = {
                 title: document.getElementById('title').value,
                 date: document.getElementById('date').value,
@@ -93,7 +105,8 @@
             fetch('http://localhost:3000/api/posts', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': token
                 },
                 body: JSON.stringify(formData)
             })
@@ -108,5 +121,17 @@
             });
         });
     </script>
+   
+    
+        <script>
+            document.getElementById('logout-button').addEventListener('click', function() {
+                // Borrar el token JWT del almacenamiento local
+                localStorage.removeItem('token');
+                // Redirigir al usuario a la página de inicio de sesión
+                window.location.href = 'login.html';
+            });
+        </script>
+  
+    
 </body>
 </html>

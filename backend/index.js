@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const bcrypt = require('bcrypt'); // Importa bcrypt para el hashing de contraseñas
-const User = require('./models/user'); // Importa el modelo de usuario
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken'); // Importa jsonwebtoken
+const User = require('./models/user');
 
 dotenv.config();
 
@@ -38,14 +39,30 @@ app.post('/api/login', async (req, res) => {
             return res.status(400).json({ message: 'Invalid username or password' });
         }
 
-        res.json({ message: 'Login successful', user });
+        // Generar un token JWT
+        const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.json({ message: 'Login successful', token });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Rutas para las publicaciones
-app.use('/api/posts', require('./routes/routes'));
+// Middleware para verificar el token JWT
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+    if (!token) return res.status(403).json({ message: 'Token is required' });
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ message: 'Invalid token' });
+
+        req.user = user;
+        next();
+    });
+};
+
+// Rutas protegidas
+app.use('/api/posts', authenticateToken, require('./routes/routes'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
