@@ -1,0 +1,24 @@
+# Usa la última versión de Ubuntu
+FROM ubuntu:latest
+
+# Instala las actualizaciones del sistema y las dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    curl \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# Establece el directorio de trabajo en la carpeta de la aplicación
+WORKDIR /app
+
+# Copia el archivo package.json e instala las dependencias
+COPY package*.json ./
+RUN npm install
+
+# Copia el resto de la aplicación
+COPY . .
+
+# Expone el puerto en el que tu aplicación se ejecuta
+EXPOSE 3000
+
+# Comando para iniciar la aplicación
+CMD ["node", "index.js"]
