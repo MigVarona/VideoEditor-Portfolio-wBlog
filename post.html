@@ -262,8 +262,22 @@
    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('http://localhost:3000/api/posts')
-                .then(response => response.json())
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Debes iniciar sesión para acceder a esta página.');
+        window.location.href = 'login.html';
+    } else {
+        fetch('http://localhost:3000/api/posts', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(posts => {
                     const postsContainer = document.getElementById('posts-container');
                     postsContainer.innerHTML = '';
@@ -313,7 +327,7 @@
                         const postContent2 = document.createElement('div');
                         postContent2.id = 'post-content2';
                         postContent2.textContent = post.content2;
-
+    
     
                         const figure = document.createElement('figure');
                         figure.style.paddingBottom = '56.206088992974244%';
@@ -325,14 +339,14 @@
                         iframe.frameborder = 0;
                         iframe.scrolling = 'no';
                         iframe.src = post.videoUrl;
-                        iframe.style.marginTop = '50px'; 
+                        iframe.style.marginTop = '50px';
     
                         const content3 = document.createElement('h5');
                         const postContent = document.createElement('div');
                         postContent.id = 'post-content';
                         postContent.textContent = post.content;
-                        postContent.style.marginTop = '100px'; 
-
+                        postContent.style.marginTop = '100px';
+    
     
                         postsContainer.appendChild(postElement);
                         postElement.appendChild(containerMedium);
@@ -353,11 +367,13 @@
                         richText.appendChild(postContent);
                     });
     
-                    
+    
                 })
-                
+                .catch(error => console.error('Error:', error));
+            }
         });
     </script>
+    
     
     
     
