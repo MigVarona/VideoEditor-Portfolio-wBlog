@@ -1,11 +1,5 @@
-# Usa la última versión de Ubuntu
-FROM ubuntu:latest
-
-# Instala las actualizaciones del sistema y las dependencias necesarias
-RUN apt-get update && apt-get install -y \
-    curl \
-    npm \
-    && rm -rf /var/lib/apt/lists/*
+# Usa la última versión de Node.js como imagen base
+FROM node:latest
 
 # Establece el directorio de trabajo en la carpeta de la aplicación
 WORKDIR /app

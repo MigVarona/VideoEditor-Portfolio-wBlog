@@ -48,12 +48,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.message === 'Login successful') {
-                    // Guardar el token en localStorage
                     localStorage.setItem('token', data.token);
-                    // Redirigir a la página de administración si el inicio de sesión es exitoso
                     window.location.href = 'admin.html';
                 } else {
-                    alert(data.message); // Mostrar un mensaje si el inicio de sesión falla
+                    alert(data.message); 
                 }
             })
             .catch(error => {
