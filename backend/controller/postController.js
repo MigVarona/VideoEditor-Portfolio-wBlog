@@ -24,12 +24,20 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  // Imprimir el cuerpo de la solicitud para depurar
-  console.log('Request body:', req.body);
-
   // Crear un nuevo objeto Post con los datos recibidos
-  const post = new Post(req.body);
-  
+  const post = new Post({
+    title: req.body.title,
+    description: req.body.description,
+    author: req.body.author,
+    date: req.body.date,
+    category: req.body.category,
+    content: req.body.content,
+    imageUrl: req.file.path, // Aquí utilizamos req.file para obtener la ruta de la imagen subida
+    tags: req.body.tags,
+    content2: req.body.content2,
+    videoUrl: req.body.videoUrl
+  });
+
   try {
     // Guardar el nuevo post en la base de datos
     const newPost = await post.save();
