@@ -74,8 +74,7 @@
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
+      
 
         <label for="category">Category:</label>
         <input type="text" id="category" name="category" required>
@@ -101,14 +100,16 @@
 
             const formData = new FormData();
             formData.append('title', document.getElementById('title').value);
-            formData.append('date', document.getElementById('date').value);
+            
+         
+            
             formData.append('category', document.getElementById('category').value);
             formData.append('imageFile', document.getElementById('imageFile').files[0]);
             formData.append('videoUrl', document.getElementById('video').value);
             formData.append('content', document.getElementById('content').value);
             formData.append('content2', document.getElementById('content2').value);
 
-            fetch('https://backcris10.onrender.com/api/posts', {
+            fetch('http://localhost:3000/api/posts', {
                 method: 'POST',
                 body: formData
             })

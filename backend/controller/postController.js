@@ -4,12 +4,14 @@ const Post = require('../models/post');
 
 exports.getPosts = async (req, res) => {
   try {
-    const posts = await Post.find();
+    // Consultar las publicaciones y ordenarlas por fecha de publicación descendente
+    const posts = await Post.find().sort({ date: -1 });
     res.json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.getPostById = async (req, res) => {
   try {
@@ -24,12 +26,15 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  // Crear un nuevo objeto Post con los datos recibidos
+  // Obtener la fecha actual del servidor
+  const currentDate = Date.now();
+
+  // Crear un nuevo objeto Post con los datos recibidos y la fecha actual
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
     author: req.body.author,
-    date: req.body.date,
+    date: currentDate, // Utilizar la fecha actual
     category: req.body.category,
     content: req.body.content,
     imageUrl: req.file.path, // Aquí utilizamos req.file para obtener la ruta de la imagen subida
