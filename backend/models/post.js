@@ -1,5 +1,3 @@
-// post.js
-
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
@@ -9,12 +7,12 @@ const postSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     category: { type: String, required: true },
     content: { type: String, required: true },
-    imageUrl: String,
+    imageUrl: String, // Primer campo de imagen
+    secondImageUrl: String, // Segundo campo de imagen
     tags: [String], 
     content2: String,
     videoUrl: String
 });
-
 
 const Post = mongoose.model('Post', postSchema);
 
