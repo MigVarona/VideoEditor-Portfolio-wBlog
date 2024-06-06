@@ -4,12 +4,14 @@ const Post = require('../models/post');
 
 exports.getPosts = async (req, res) => {
   try {
-    const posts = await Post.find();
+    // Consultar las publicaciones y ordenarlas por fecha de publicación descendente
+    const posts = await Post.find().sort({ date: -1 });
     res.json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.getPostById = async (req, res) => {
   try {
@@ -24,28 +26,37 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  // Crear un nuevo objeto Post con los datos recibidos
-  const post = new Post({
-    title: req.body.title,
-    description: req.body.description,
-    author: req.body.author,
-    date: req.body.date,
-    category: req.body.category,
-    content: req.body.content,
-    imageUrl: req.file.path, // Aquí utilizamos req.file para obtener la ruta de la imagen subida
-    tags: req.body.tags,
-    content2: req.body.content2,
-    videoUrl: req.body.videoUrl
-  });
-
   try {
-    // Guardar el nuevo post en la base de datos
-    const newPost = await post.save();
-    res.status(201).json(newPost);
+      // Obtener la fecha actual del servidor
+      const currentDate = Date.now();
+
+      // Crear un nuevo objeto Post con los datos recibidos y la fecha actual
+      const post = new Post({
+          title: req.body.title,
+          description: req.body.description,
+          author: req.body.author,
+          date: currentDate, // Utilizar la fecha actual
+          category: req.body.category,
+          content: req.body.content,
+          imageUrl: req.files['imageFile'][0].path, // Obtener la ruta de la primera imagen subida
+          secondImageUrl: req.files['imageFile2'][0].path, // Obtener la ruta de la segunda imagen subida
+          tags: req.body.tags,
+          content2: req.body.content2,
+          videoUrl: req.body.videoUrl
+      });
+
+      // Guardar el nuevo post en la base de datos
+      const newPost = await post.save();
+
+      // Enviar una respuesta con el nuevo post creado
+      res.status(201).json(newPost);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+      // Si ocurre un error, enviar una respuesta de error con el mensaje de error
+      console.error("Error creating post:", error);
+      res.status(400).json({ message: error.message });
   }
 };
+
 
 exports.updatePost = async (req, res) => {
   try {

@@ -74,17 +74,21 @@
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
+
 
         <label for="category">Category:</label>
         <input type="text" id="category" name="category" required>
 
         <label for="imageFile">Image File:</label>
-        <input type="file" id="imageFile" name="file" accept="image/*" required>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
+
+        <label for="imageFile2">Second Image File:</label>
+        <input type="file" id="imageFile2" name="imageFile2" accept="image/*" required>
 
         <label for="video">Video URL:</label>
         <input type="url" id="video" name="videoUrl">
+
+        
 
         <label for="content">Content:</label>
         <textarea id="content" name="content" rows="10" required></textarea>
@@ -101,9 +105,12 @@
 
             const formData = new FormData();
             formData.append('title', document.getElementById('title').value);
-            formData.append('date', document.getElementById('date').value);
+
+
+
             formData.append('category', document.getElementById('category').value);
             formData.append('imageFile', document.getElementById('imageFile').files[0]);
+            formData.append('imageFile2', document.getElementById('imageFile2').files[0]);
             formData.append('videoUrl', document.getElementById('video').value);
             formData.append('content', document.getElementById('content').value);
             formData.append('content2', document.getElementById('content2').value);

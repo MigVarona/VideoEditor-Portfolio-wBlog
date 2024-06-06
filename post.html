@@ -264,104 +264,115 @@
                     'Content-Type': 'application/json'
                 }
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(posts => {
-                    const postsContainer = document.getElementById('posts-container');
-                    postsContainer.innerHTML = '';
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(posts => {
+                const postsContainer = document.getElementById('posts-container');
+                postsContainer.innerHTML = '';
+    
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('blog-detail-section', 'section-spacing');
+    
+                    const containerMedium = document.createElement('div');
+                    containerMedium.classList.add('container-medium', 'w-container');
+    
+                    const blogDetail = document.createElement('div');
+                    blogDetail.classList.add('blog-detail');
+    
+                    const blogDetailDate = document.createElement('div');
+                    blogDetailDate.classList.add('blog-detail-date');
+                    blogDetailDate.textContent = post.date;
+    
+                    const postTitle = document.createElement('h1');
+                    postTitle.id = 'post-title';
+                    postTitle.textContent = post.title;
+    
+                    const blogDetailMeta = document.createElement('div');
+                    blogDetailMeta.classList.add('blog-detail-meta');
+    
+                    const blogDash = document.createElement('div');
+                    blogDash.classList.add('blog-dash');
+    
+                    const category = document.createElement('div');
+                    category.textContent = post.category;
+    
+                    const blogDetailImage = document.createElement('img');
+                    blogDetailImage.id = 'blog-image';
+                    blogDetailImage.loading = 'eager';
+                    blogDetailImage.alt = 'Blog Image';
+                    blogDetailImage.classList.add('blog-detail-image');
+                    blogDetailImage.src = `http://localhost:3000/${post.imageUrl}`;
+    
+                    // Segunda imagen
+                    const blogDetailImage2 = document.createElement('img');
+                    blogDetailImage2.id = 'blog-image2';
+                    blogDetailImage2.loading = 'eager';
+                    blogDetailImage2.alt = 'Blog Image 2';
+                    blogDetailImage2.classList.add('blog-detail-image');
+                    blogDetailImage2.src = `http://localhost:3000/${post.secondImageUrl}`;
+    
+                    const blogRichText = document.createElement('div');
+                    blogRichText.id = 'w-node-cbfa1dc0-5694-caf3-0c77-9876848d6f0e-89419815';
+                    blogRichText.classList.add('blog-rich-text');
+    
+                    const richText = document.createElement('div');
+                    richText.classList.add('w-richtext');
+    
+                    const content2 = document.createElement('h5');
+                    const postContent2 = document.createElement('div');
+                    postContent2.id = 'post-content2';
+                    postContent2.textContent = post.content2;
+    
+                    const figure = document.createElement('figure');
+                    figure.style.paddingBottom = '56.206088992974244%';
+                    figure.classList.add('w-richtext-align-fullwidth', 'w-richtext-figure-type-video');
+    
+                    const iframe = document.createElement('iframe');
+                    iframe.id = 'video';
+                    iframe.allowFullscreen = true;
+                    iframe.frameBorder = 0;
+                    iframe.scrolling = 'no';
+                    iframe.src = post.videoUrl;
+                    iframe.style.marginTop = '50px';
+    
+                    const content3 = document.createElement('h5');
+                    const postContent = document.createElement('div');
+                    postContent.id = 'post-content';
+                    postContent.textContent = post.content;
+                    postContent.style.marginTop = '100px';
+                    postContent.style.marginBottom = '40px';
 
-                    posts.forEach(post => {
-                        const postElement = document.createElement('div');
-                        postElement.classList.add('blog-detail-section', 'section-spacing');
-
-                        const containerMedium = document.createElement('div');
-                        containerMedium.classList.add('container-medium', 'w-container');
-
-                        const blogDetail = document.createElement('div');
-                        blogDetail.classList.add('blog-detail');
-
-                        const blogDetailDate = document.createElement('div');
-                        blogDetailDate.classList.add('blog-detail-date');
-                        blogDetailDate.textContent = post.date;
-
-                        const postTitle = document.createElement('h1');
-                        postTitle.id = 'post-title';
-                        postTitle.textContent = post.title;
-
-                        const blogDetailMeta = document.createElement('div');
-                        blogDetailMeta.classList.add('blog-detail-meta');
-
-                        const blogDash = document.createElement('div');
-                        blogDash.classList.add('blog-dash');
-
-                        const category = document.createElement('div');
-                        category.textContent = post.category;
-
-                        const blogDetailImage = document.createElement('img');
-                        blogDetailImage.id = 'blog-image';
-                        blogDetailImage.loading = 'eager';
-                        blogDetailImage.alt = 'Blog Image';
-                        blogDetailImage.classList.add('blog-detail-image');
-                        blogDetailImage.src = `http://localhost:3000/${post.imageUrl}`;
-
-                        const blogRichText = document.createElement('div');
-                        blogRichText.id = 'w-node-cbfa1dc0-5694-caf3-0c77-9876848d6f0e-89419815';
-                        blogRichText.classList.add('blog-rich-text');
-
-                        const richText = document.createElement('div');
-                        richText.classList.add('w-richtext');
-
-                        const content2 = document.createElement('h5');
-                        const postContent2 = document.createElement('div');
-                        postContent2.id = 'post-content2';
-                        postContent2.textContent = post.content2;
-
-                        const figure = document.createElement('figure');
-                        figure.style.paddingBottom = '56.206088992974244%';
-                        figure.classList.add('w-richtext-align-fullwidth', 'w-richtext-figure-type-video');
-
-                        const iframe = document.createElement('iframe');
-                        iframe.id = 'video';
-                        iframe.allowFullscreen = true;
-                        iframe.frameBorder = 0;
-                        iframe.scrolling = 'no';
-                        iframe.src = post.videoUrl;
-                        iframe.style.marginTop = '50px';
-
-                        const content3 = document.createElement('h5');
-                        const postContent = document.createElement('div');
-                        postContent.id = 'post-content';
-                        postContent.textContent = post.content;
-                        postContent.style.marginTop = '100px';
-
-                        postsContainer.appendChild(postElement);
-                        postElement.appendChild(containerMedium);
-                        containerMedium.appendChild(blogDetail);
-                        blogDetail.appendChild(blogDetailDate);
-                        blogDetail.appendChild(postTitle);
-                        blogDetail.appendChild(blogDetailMeta);
-                        blogDetailMeta.appendChild(blogDash);
-                        blogDetailMeta.appendChild(category);
-                        blogDetail.appendChild(blogDetailImage);
-                        blogDetail.appendChild(blogRichText);
-                        blogRichText.appendChild(richText);
-                        richText.appendChild(content2);
-                        richText.appendChild(postContent2);
-                        richText.appendChild(figure);
-                        figure.appendChild(iframe);
-                        richText.appendChild(content3);
-                        richText.appendChild(postContent);
-                    });
-                })
-                .catch(error => console.error('Error:', error));
+    
+                    postsContainer.appendChild(postElement);
+                    postElement.appendChild(containerMedium);
+                    containerMedium.appendChild(blogDetail);
+                    blogDetail.appendChild(blogDetailDate);
+                    blogDetail.appendChild(postTitle);
+                    blogDetail.appendChild(blogDetailMeta);
+                    blogDetailMeta.appendChild(blogDash);
+                    blogDetailMeta.appendChild(category);
+                    blogDetail.appendChild(blogDetailImage);
+                    blogDetail.appendChild(blogDetailImage2); 
+                    blogDetail.appendChild(blogRichText);
+                    blogRichText.appendChild(richText);
+                    richText.appendChild(content2);
+                    blogDetail.appendChild(blogDetailImage2); 
+                    richText.appendChild(postContent2);
+                    richText.appendChild(figure);
+                    figure.appendChild(iframe);
+                    richText.appendChild(content3);
+                    richText.appendChild(postContent);
+                });
+            })
+            .catch(error => console.error('Error:', error));
         });
     </script>
-
-
+    
 
 
 </body>
