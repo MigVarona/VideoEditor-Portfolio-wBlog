@@ -31,25 +31,24 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     console.error("Error connecting to MongoDB", error);
   });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Directorio donde se guardarán los archivos
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname); // Usa el nombre original del archivo
-  }
-});
-
-const upload = multer({ storage: storage });
-
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Rutas para manejar las solicitudes relacionadas con los posts
-app.post("/api/posts", upload.single("imageFile"), postController.createPost);
-app.get("/api/posts", postController.getPosts);
-app.get("/api/posts/:id", postController.getPostById);
-app.put("/api/posts/:id", postController.updatePost);
-app.delete("/api/posts/:id", postController.deletePost);
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "uploads/"); // Directorio donde se guardarán los archivos
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname); 
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+  
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+  
+  app.post("/api/posts", upload.fields([{ name: 'imageFile', maxCount: 1 }, { name: 'imageFile2', maxCount: 1 }]), postController.createPost);
+  app.get("/api/posts", postController.getPosts);
+  app.get("/api/posts/:id", postController.getPostById);
+  app.put("/api/posts/:id", postController.updatePost);
+  app.delete("/api/posts/:id", postController.deletePost);
 
 app.post("/api/login", async (req, res) => {
   try {
