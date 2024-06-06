@@ -64,7 +64,7 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-app.use("/api/posts", authenticateToken, routes);
+app.use("/api/posts", routes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
