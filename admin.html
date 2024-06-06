@@ -108,7 +108,7 @@
             formData.append('content', document.getElementById('content').value);
             formData.append('content2', document.getElementById('content2').value);
 
-            fetch('http://localhost:3000/api/posts', {
+            fetch('https://backcris10.onrender.com/api/posts', {
                 method: 'POST',
                 body: formData
             })
