@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const token = localStorage.getItem('token');
             if (!token) {
                 alert('You must be logged in to access this page.');
@@ -32,12 +34,16 @@
             flex-direction: column;
         }
 
-        label, input, textarea, button {
+        label,
+        input,
+        textarea,
+        button {
             margin-bottom: 1em;
             color: #fff;
         }
 
-        input, textarea {
+        input,
+        textarea {
             background-color: #333;
             border: 1px solid #666;
             padding: 10px;
@@ -59,11 +65,12 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Create New Blog Post</h1>
     <button id="logout-button">Logout</button>
 
-    <form id="create-post-form">
+    <form id="create-post-form" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
@@ -73,8 +80,8 @@
         <label for="category">Category:</label>
         <input type="text" id="category" name="category" required>
 
-        <label for="image">Image URL:</label>
-        <input type="url" id="image" name="imageUrl" required>
+        <label for="imageFile">Image File:</label>
+        <input type="file" id="imageFile" name="file" accept="image/*" required>
 
         <label for="video">Video URL:</label>
         <input type="url" id="video" name="videoUrl">
@@ -87,51 +94,41 @@
 
         <button type="submit">Create Post</button>
     </form>
+
     <script>
-        document.getElementById('create-post-form').addEventListener('submit', function(event) {
+        document.getElementById('create-post-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const token = localStorage.getItem('token');
-            const formData = {
-                title: document.getElementById('title').value,
-                date: document.getElementById('date').value,
-                category: document.getElementById('category').value,
-                imageUrl: document.getElementById('image').value,
-                videoUrl: document.getElementById('video').value,
-                content: document.getElementById('content').value,
-                content2: document.getElementById('content2').value // Agrega el campo content2 al formData
-            };
+            const formData = new FormData();
+            formData.append('title', document.getElementById('title').value);
+            formData.append('date', document.getElementById('date').value);
+            formData.append('category', document.getElementById('category').value);
+            formData.append('imageFile', document.getElementById('imageFile').files[0]);
+            formData.append('videoUrl', document.getElementById('video').value);
+            formData.append('content', document.getElementById('content').value);
+            formData.append('content2', document.getElementById('content2').value);
 
-            fetch('http://localhost:3000/api/posts', {
+            fetch('https://backcris10.onrender.com/api/posts', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token
-                },
-                body: JSON.stringify(formData)
+                body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                alert('Post created successfully!');
-                
-            })
-            .catch(error => {
-                console.error('Error creating post:', error);
-                alert('Failed to create post.');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    alert('Post created successfully!');
+                })
+                .catch(error => {
+                    console.error('Error creating post:', error);
+                    alert('Failed to create post.');
+                });
+        });
+
+        document.getElementById('logout-button').addEventListener('click', function () {
+            // Remove JWT token from local storage
+            localStorage.removeItem('token');
+            // Redirect user to login page
+            window.location.href = 'login.html';
         });
     </script>
-   
-    
-        <script>
-            document.getElementById('logout-button').addEventListener('click', function() {
-                // Borrar el token JWT del almacenamiento local
-                localStorage.removeItem('token');
-                // Redirigir al usuario a la página de inicio de sesión
-                window.location.href = 'login.html';
-            });
-        </script>
-  
-    
 </body>
+
 </html>
