@@ -1,17 +1,15 @@
-// postController.js
-
 const Post = require('../models/post');
+const fs = require('fs');
+const path = require('path');
 
 exports.getPosts = async (req, res) => {
   try {
-    // Consultar las publicaciones y ordenarlas por fecha de publicación descendente
     const posts = await Post.find().sort({ date: -1 });
     res.json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 exports.getPostById = async (req, res) => {
   try {
@@ -27,33 +25,66 @@ exports.getPostById = async (req, res) => {
 
 exports.createPost = async (req, res) => {
   try {
-      // Obtener la fecha actual del servidor
-      const currentDate = Date.now();
+    const currentDate = Date.now();
+    const post = new Post({
+      title: req.body.title,
+      description: req.body.description,
+      author: req.body.author,
+      date: currentDate,
+      category: req.body.category,
+      content: req.body.content,
+      imageUrl: req.files['imageFile'][0].path,
+      secondImageUrl: req.files['imageFile2'][0].path,
+      tags: req.body.tags,
+      content2: req.body.content2,
+      videoUrl: req.body.videoUrl
+    });
 
-      // Crear un nuevo objeto Post con los datos recibidos y la fecha actual
-      const post = new Post({
-          title: req.body.title,
-          description: req.body.description,
-          author: req.body.author,
-          date: currentDate, // Utilizar la fecha actual
-          category: req.body.category,
-          content: req.body.content,
-          imageUrl: req.files['imageFile'][0].path, // Obtener la ruta de la primera imagen subida
-          secondImageUrl: req.files['imageFile2'][0].path, // Obtener la ruta de la segunda imagen subida
-          tags: req.body.tags,
-          content2: req.body.content2,
-          videoUrl: req.body.videoUrl
-      });
+    const newPost = await post.save();
 
-      // Guardar el nuevo post en la base de datos
-      const newPost = await post.save();
+    const newPageContent = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${newPost.title}</title>
+        <style>
+          body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+          }
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>${newPost.title}</h1>
+        <h2>Category: ${newPost.category}</h2>
+        <img src="/${newPost.imageUrl}" alt="${newPost.title}">
+        <img src="/${newPost.secondImageUrl}" alt="${newPost.title}">
+        <p>${newPost.content}</p>
+        <p>${newPost.content2}</p>
+        <video controls>
+          <source src="${newPost.videoUrl}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </body>
+      </html>
+    `;
 
-      // Enviar una respuesta con el nuevo post creado
-      res.status(201).json(newPost);
+    const newPagePath = path.join(__dirname, '..', 'public', 'posts', `${newPost._id}.html`);
+    fs.writeFileSync(newPagePath, newPageContent);
+
+    // Enviar una respuesta con un objeto que incluye la propiedad 'success'
+    res.status(201).json({ success: true, data: newPost });
   } catch (error) {
-      // Si ocurre un error, enviar una respuesta de error con el mensaje de error
-      console.error("Error creating post:", error);
-      res.status(400).json({ message: error.message });
+    console.error("Error creating post:", error);
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
