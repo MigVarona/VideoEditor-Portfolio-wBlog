@@ -1,59 +1,15 @@
-const Post = require("../models/post");
-const fs = require("fs");
-const path = require("path");
 
-exports.getPosts = async (req, res) => {
-  try {
-    const posts = await Post.find().sort({ date: -1 });
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.getPostById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-    res.json(post);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.createPost = async (req, res) => {
-  try {
-    const currentDate = Date.now();
-    const post = new Post({
-      title: req.body.title,
-      description: req.body.description,
-      author: req.body.author,
-      date: currentDate,
-      category: req.body.category,
-      content: req.body.content,
-      imageUrl: req.files["imageFile"][0].path,
-      secondImageUrl: req.files["imageFile2"][0].path,
-      tags: req.body.tags,
-      content2: req.body.content2,
-      videoUrl: req.body.videoUrl,
-    });
-
-    const newPost = await post.save();
-
-    const newPageContent = `
            <!DOCTYPE html>
       <html lang="en">
       <head>
-       <script src="jquery.js"></script>
+        <script src="jquery.js"></script>
         <script src="jquery2.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
       <link rel="stylesheet" href="style.css">
     <link href="blog.css" rel="stylesheet" type="text/css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${newPost.title}</title>
+        <title>Create New Blog Post</title>
         <script src="main.js"></script>
         <style>
           body {
@@ -75,7 +31,8 @@ exports.createPost = async (req, res) => {
         data-no-scroll="1" data-duration="400" data-doc-height="1">
         <div class="gradient"></div>
         <div class="nav-container w-container">
-               <a href="http://localhost:5502/index.html" class="brand w-nav-brand">
+            <div class="nav-menu-wrapper">
+                <a href="http://localhost:5502/index.html" class="brand w-nav-brand">
                     <img src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" style="height: 80px !important;" />
                 </a>
                 <nav role="navigation" class="nav-menu w-nav-menu">
@@ -166,22 +123,39 @@ exports.createPost = async (req, res) => {
         <div class="container-medium w-container">
             <div class="blog-detail">
                 <div class="blog-detail-date">Fecha del post</div>
-                <h1>${newPost.title}</h1>
+                <h1>Create New Blog Post</h1>
                 <div class="blog-detail-meta">
                     <div class="blog-dash"></div>
-                    <h2>Category: ${newPost.category}</h2>
+                    <h2>Category: Camaras</h2>
                 </div>
-                <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
-                <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
+                <img id="blog-image" loading="eager" alt="Create New Blog Post" class="blog-detail-image" src="/uploads\mos-design-V9WkSZx4TLc-unsplash.jpg">
+                <img id="blog-image2" loading="eager" alt="Create New Blog Post" class="blog-detail-image" src="/uploads\google-deepmind-QhDs9x7o9Jc-unsplash.jpg">
                 <div class="blog-rich-text">
                     <div class="w-richtext">
                         <h5></h5>
-                        <p>${newPost.content2}</p>
+                        <p>
+¿De dónde viene?
+Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32
+
+El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.
+
+¿Dónde puedo conseguirlo?
+Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.</p>
                         <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
-                            <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
+                            <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/-ChLT7b2Gj8" style="margin-top: 50px;"></iframe>
                         </figure>
                         <h5></h5>
-                        <p>${newPost.content}</p>
+                        <p>
+¿De dónde viene?
+Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32
+
+El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.
+
+¿Dónde puedo conseguirlo?
+Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.
+
+
+</p>
                     </div>
                 </div>
             </div>
@@ -193,68 +167,4 @@ exports.createPost = async (req, res) => {
 
       </body>
       </html>
-    `;
-
-    const newPagePath = path.join(
-      __dirname,
-      "..",
-      "public",
-      "posts",
-      `${newPost._id}.html`
-    );
-    fs.writeFileSync(newPagePath, newPageContent);
-
-    // Enviar una respuesta con un objeto que incluye la propiedad 'success'
-    res.status(201).json({ success: true, data: newPost });
-  } catch (error) {
-    console.error("Error creating post:", error);
-    res.status(400).json({ success: false, message: error.message });
-  }
-};
-
-exports.updatePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-
-    if (req.body.title != null) {
-      post.title = req.body.title;
-    }
-    if (req.body.description != null) {
-      post.description = req.body.description;
-    }
-
-    const updatedPost = await post.save();
-    res.json(updatedPost);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-exports.deletePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-
-    await post.remove();
-    res.json({ message: "Deleted post" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.getPostTitleById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-    res.json({ title: post.title });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+    

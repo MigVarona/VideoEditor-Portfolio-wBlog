@@ -16,9 +16,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self' http://localhost:* data:; font-src 'self' data:; img-src 'self' data: http://localhost:*; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval';");
+  res.setHeader("Content-Security-Policy", "default-src 'self' http://localhost:* data:; font-src 'self' data:; img-src 'self' data: http://localhost:*; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com;");
   next();
 });
+
 
 app.use(cors());
 app.use(express.json());
@@ -59,6 +60,7 @@ app.get("/api/posts", postController.getPosts);
 app.get("/api/posts/:id", postController.getPostById);
 app.put("/api/posts/:id", postController.updatePost);
 app.delete("/api/posts/:id", postController.deletePost);
+app.use(express.static(__dirname));
 
 app.post("/api/login", async (req, res) => {
   try {

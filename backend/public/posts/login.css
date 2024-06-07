@@ -1,0 +1,11 @@
+.bg-custom {
+    background-image: url('assets/background-login.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg {
+    background-color: black !important;
+    opacity: 85%;
+    border-radius: 5%;
+}
