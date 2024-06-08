@@ -9,6 +9,7 @@ const multer = require("multer");
 const fs = require("fs");
 const User = require("./models/user");
 const postController = require("./controller/postController");
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
 
 app.use(cors());
 app.use(express.json());
+
+
 
 // Crear las carpetas necesarias si no existen
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -61,6 +64,8 @@ app.get("/api/posts/:id", postController.getPostById);
 app.put("/api/posts/:id", postController.updatePost);
 app.delete("/api/posts/:id", postController.deletePost);
 app.use(express.static(__dirname));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.post("/api/login", async (req, res) => {
   try {

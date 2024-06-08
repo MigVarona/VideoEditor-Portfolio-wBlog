@@ -92,9 +92,7 @@
         <label for="content2">Additional Content:</label>
         <textarea id="content2" name="content2" rows="10"></textarea>
 
-        <!-- Nuevo campo para pageName -->
-        <label for="pageName">Page Name:</label>
-        <input type="text" id="pageName" name="pageName" required>
+  
 
         <button type="submit">Create Post</button>
     </form>
@@ -111,7 +109,7 @@
             formData.append('videoUrl', document.getElementById('video').value);
             formData.append('content', document.getElementById('content').value);
             formData.append('content2', document.getElementById('content2').value);
-            formData.append('pageName', document.getElementById('pageName').value);
+           
 
             fetch('http://localhost:3000/api/posts', {
                 method: 'POST',
@@ -150,7 +148,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Failed to create post or page.');
+                    alert('Muy bien has creado el post.');
                 });
 
         });
