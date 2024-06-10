@@ -146,27 +146,27 @@ exports.createPost = async (req, res) => {
         </div>
     </div>
 
-  <div id="posts-container">
+  <div style="margin-top: 100px;" id="posts-container">
     <div class="blog-detail-section section-spacing">
       <div class="container-medium w-container">
         <div class="blog-detail">
-          <div class="blog-detail-date">Fecha del post: ${new Date(newPost.date).toLocaleDateString()}</div>
           <h1>${newPost.title}</h1>
           <div class="blog-detail-meta">
-            <div class="blog-dash"></div>
-            <h2>Category: ${newPost.category}</h2>
+          <div style="margin-bottom: 6px;" class="blog-dash"></div>
+              <h6>${newPost.category}</h6>
           </div>
           <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
+          <p>${newPost.content2}</p>
           <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
           <div class="blog-rich-text">
             <div class="w-richtext">
-              <h5></h5>
-              <p>${newPost.content2}</p>
+               <p>${newPost.content}</p>
+              
               <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
                 <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
               </figure>
               <h5></h5>
-              <p>${newPost.content}</p>
+            
             </div>
           </div>
         </div>
@@ -174,12 +174,14 @@ exports.createPost = async (req, res) => {
     </div>
   </div>
 
-<div class="blog-section" style="text-align: center;">
+ <div class="blog-section" style="text-align: center; margin-top: 100px;">
         <div class="container w-container">
             <div class="section-title">
-                <h3 class="heading-h6">Recent post</h3>
+                <h3 class="heading-h6"
+                    style="text-decoration: underline; text-decoration-color: white; text-decoration-thickness: 2px; opacity: 0.9;">
+                    Recent post</h3>
             </div>
-            <div class="w-dyn-list">
+            <div style="margin-top: 90px;" class="w-dyn-list">
                 <div role="list" class="grid-blog w-dyn-items"></div>
             </div>
         </div>
