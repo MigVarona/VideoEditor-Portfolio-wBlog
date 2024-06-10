@@ -44,32 +44,32 @@ exports.createPost = async (req, res) => {
 
     const pageTitle = newPost.title.replace(/\s+/g, "-").toLowerCase(); // Convertir el título a un formato adecuado para el nombre del archivo
     const newPageContent = `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <script src="jquery.js"></script>
-        <script src="jquery2.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="style.css">
-        <link href="blog.css" rel="stylesheet" type="text/css" />
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${newPost.title}</title>
-        <script src="main.js"></script>
-       
-      </head>
+     <!DOCTYPE html>
+<html data-wf-page="66095c4f9765fb9eae51e7eb">
+<head>
+  <script src="jquery.js"></script>
+  <script src="jquery2.js"></script>
+  <link rel="stylesheet" href="cloud.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="blog.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aa</title>
+  <script src="main.js"></script>
+
+</head>
       <body>
       
 
-          <div data-animation="over-left" class="navbar-transparent w-nav" data-easing2="ease" data-easing="ease"
+              <div data-animation="over-left" class="navbar-transparent w-nav" data-easing2="ease" data-easing="ease"
         data-collapse="medium" role="banner" data-no-scroll="1" data-duration="400" data-doc-height="1">
         <div class="gradient"></div>
         <div class="nav-container w-container">
             <div class="nav-menu-wrapper"><a href="index.html" class=" brand w-nav-brand"><img
-                        src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
+                        src="assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
                 <nav role="navigation" class="nav-menu w-nav-menu">
                     <div class="tablet-menu"><a href="index.html" class="brand-tablet w-nav-brand"><img
-                                src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
+                                src="assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
                   
                     </div>
                     <div class="menu-wrap">
@@ -79,7 +79,7 @@ exports.createPost = async (req, res) => {
                             <div class="nav-dropdown-toggle w-dropdown-toggle">
                                 <div class="clip">
                                     <div class="btn-banner-text">
-                                        <a href="http://localhost:5502/about.html" style="color: white;">
+                                        <a href="about.html" style="color: white;">
                                             <div class="btn-title-text">About Me <span class="tablet-hidden">+</span>
                                             </div>
 
@@ -107,11 +107,11 @@ exports.createPost = async (req, res) => {
                                 </div>
                             </div>
                             <nav class="nav-dropdown-list w-dropdown-list">
-                                <div class="nav-dropdown-link-wrapper"><a href="http://localhost:5502/education.html"
+                                <div class="nav-dropdown-link-wrapper"><a href="education.html"
                                         class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                                        </span>Education</a><a href="http://localhost:5502/entertaiment.html"
+                                        </span>Education</a><a href="entertaiment.html"
                                         class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                                        </span>Entertaiment</a><a href="http://localhost:5502/corporate.html"
+                                        </span>Entertaiment</a><a href="corporate.html"
                                         class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
                                         </span>Corporate</a>
 
