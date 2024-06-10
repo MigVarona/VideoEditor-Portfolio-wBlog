@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self' http://localhost:* data:; font-src 'self' data:; img-src 'self' data: http://localhost:*; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com;");
+  res.setHeader("Content-Security-Policy", "default-src 'self' http://localhost:* data:; font-src 'self' data:; img-src 'self' data: http://localhost:*; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com; frame-src 'self' https://www.youtube.com/");
   next();
 });
 
@@ -27,7 +27,6 @@ app.use(express.json());
 
 
 
-// Crear las carpetas necesarias si no existen
 const uploadsDir = path.join(__dirname, 'uploads');
 const postsDir = path.join(__dirname, 'public', 'posts');
 [uploadsDir, postsDir].forEach(dir => {
