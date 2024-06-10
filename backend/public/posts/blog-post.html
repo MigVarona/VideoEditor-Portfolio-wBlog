@@ -1,74 +1,32 @@
-const Post = require("../models/post");
-const fs = require("fs");
-const path = require("path");
-
-exports.getPosts = async (req, res) => {
-  try {
-    const posts = await Post.find().sort({ date: -1 });
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.getPostById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-    res.json(post);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.createPost = async (req, res) => {
-  try {
-    const currentDate = Date.now();
-    const post = new Post({
-      title: req.body.title,
-      description: req.body.description,
-      author: req.body.author,
-      date: currentDate,
-      category: req.body.category,
-      content: req.body.content,
-      imageUrl: req.files["imageFile"][0].path,
-      secondImageUrl: req.files["imageFile2"][0].path,
-      tags: req.body.tags,
-      content2: req.body.content2,
-      videoUrl: req.body.videoUrl,
-    });
-
-    const newPost = await post.save();
-
-    const pageTitle = newPost.title.replace(/\s+/g, "-").toLowerCase();
-    const newPageContent = `
 <!DOCTYPE html>
 <html data-wf-page="66095c4f9765fb9eae51e7eb">
+
 <head>
-  <script src="jquery.js"></script>
-  <script src="jquery2.js"></script>
-  <link rel="stylesheet" href="cloud.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="blog.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${newPost.title}</title>
-  
+    <script src="jquery.js"></script>
+    <script src="jquery2.js"></script>
+    <link rel="stylesheet" href="cloud.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+
 
 </head>
+
 <body>
-      <div data-animation="over-left" class="navbar-transparent w-nav" data-easing2="ease" data-easing="ease"
+    <div data-animation="over-left" class="navbar-transparent w-nav" data-easing2="ease" data-easing="ease"
         data-collapse="medium" role="banner" data-no-scroll="1" data-duration="400" data-doc-height="1">
         <div class="gradient"></div>
         <div class="nav-container w-container">
             <div class="nav-menu-wrapper"><a href="http://localhost:5502/index.html" class=" brand w-nav-brand"><img
-                        src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
+                        src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo"
+                        height="80" /></a>
                 <nav role="navigation" class="nav-menu w-nav-menu">
                     <div class="tablet-menu"><a href="index.html" class="brand-tablet w-nav-brand"><img
-                                src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
-                  
+                                src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo"
+                                height="40" /></a>
+
                     </div>
                     <div class="menu-wrap">
 
@@ -146,35 +104,55 @@ exports.createPost = async (req, res) => {
         </div>
     </div>
 
-  <div style="margin-top: 100px;" id="posts-container">
-    <div class="blog-detail-section section-spacing">
-      <div class="container-medium w-container">
-        <div class="blog-detail">
-          <h1>${newPost.title}</h1>
-          <div class="blog-detail-meta">
-          <div style="margin-bottom: 6px;" class="blog-dash"></div>
-              <h6>${newPost.category}</h6>
-          </div>
-          <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
-          <p>${newPost.content2}</p>
-          <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
-          <div class="blog-rich-text">
-            <div class="w-richtext">
-               <p>${newPost.content}</p>
-              
-              <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
-                <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
-              </figure>
-              <h5></h5>
-            
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div style="margin-top: 100px;" id="posts-container">
+        <div class="blog-detail-section section-spacing">
+            <div class="container-medium w-container">
+                <div class="blog-detail">
+                    <h1>Blog Post</h1>
+                    <div class="blog-detail-meta">
+                        <div style="margin-bottom: 6px;" class="blog-dash"></div>
+                        <h6>Camaras</h6>
+                    </div>
+                    <img id="blog-image" loading="eager" alt="Blog Post" class="blog-detail-image"
+                        src="/uploads\jakob-owens-CiUR8zISX60-unsplash.jpg">
+                    <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum
+                        ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N.
+                        del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló
+                        de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino
+                        que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente
+                        igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las
+                        cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como
+                        por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
+                    <img id="blog-image2" loading="eager" alt="Blog Post" class="blog-detail-image"
+                        src="/uploads\thisisengineering-sbFmoKBK7jU-unsplash.jpg">
+                    <div class="blog-rich-text">
+                        <div class="w-richtext">
+                            <p>
+                                Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.
+                                Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,
+                                cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una
+                                galería de textos y los mezcló de tal manera que logró hacer un libro de textos
+                                especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno
+                                en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado
+                                en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de
+                                Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus
+                                PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
 
- <div class="blog-section" style="text-align: center; margin-top: 100px;">
+                            <figure style="padding-bottom: 56.206088992974244%;"
+                                class="w-richtext-align-fullwidth w-richtext-figure-type-video">
+                                <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no"
+                                    src="https://www.youtube.com/embed/-ChLT7b2Gj8" style="margin-top: 50px;"></iframe>
+                            </figure>
+                            <h5></h5>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-section" style="text-align: center; margin-top: 100px;">
         <div class="container w-container">
             <div class="section-title">
                 <h3 class="heading-h6"
@@ -187,7 +165,7 @@ exports.createPost = async (req, res) => {
         </div>
     </div>
 
-  <script src="post.js"></script>
+    <script src="post.js"></script>
 
 
 
@@ -230,64 +208,7 @@ exports.createPost = async (req, res) => {
             </div>
         </div>
     </footer>
-     <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>
-`;
-
-    const newPagePath = path.join(__dirname, "..", "public", "posts", `${pageTitle}.html`);
-    fs.writeFileSync(newPagePath, newPageContent);
-
-    res.status(201).json({ success: true, data: newPost });
-  } catch (error) {
-    console.error("Error creating post:", error);
-    res.status(400).json({ success: false, message: error.message });
-  }
-};
-
-exports.updatePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-
-    if (req.body.title != null) {
-      post.title = req.body.title;
-    }
-    if (req.body.description != null) {
-      post.description = req.body.description;
-    }
-
-    const updatedPost = await post.save();
-    res.json(updatedPost);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-exports.deletePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-
-    await post.remove();
-    res.json({ message: "Deleted post" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.getPostTitleById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-    res.json({ title: post.title });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
