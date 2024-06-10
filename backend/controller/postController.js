@@ -23,7 +23,6 @@ exports.getPostById = async (req, res) => {
   }
 };
 
-
 exports.createPost = async (req, res) => {
   try {
     const currentDate = Date.now();
@@ -43,7 +42,7 @@ exports.createPost = async (req, res) => {
 
     const newPost = await post.save();
 
-    const pageTitle = newPost.title.replace(/\s+/g, '-').toLowerCase(); // Convertir el título a un formato adecuado para el nombre del archivo
+    const pageTitle = newPost.title.replace(/\s+/g, "-").toLowerCase(); // Convertir el título a un formato adecuado para el nombre del archivo
     const newPageContent = `
       <!DOCTYPE html>
       <html lang="en">
