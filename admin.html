@@ -74,8 +74,6 @@
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
-
-
         <label for="category">Category:</label>
         <input type="text" id="category" name="category" required>
 
@@ -88,13 +86,13 @@
         <label for="video">Video URL:</label>
         <input type="url" id="video" name="videoUrl">
 
-        
-
         <label for="content">Content:</label>
         <textarea id="content" name="content" rows="10" required></textarea>
 
         <label for="content2">Additional Content:</label>
         <textarea id="content2" name="content2" rows="10"></textarea>
+
+  
 
         <button type="submit">Create Post</button>
     </form>
@@ -105,28 +103,54 @@
 
             const formData = new FormData();
             formData.append('title', document.getElementById('title').value);
-
-
-
             formData.append('category', document.getElementById('category').value);
             formData.append('imageFile', document.getElementById('imageFile').files[0]);
             formData.append('imageFile2', document.getElementById('imageFile2').files[0]);
             formData.append('videoUrl', document.getElementById('video').value);
             formData.append('content', document.getElementById('content').value);
             formData.append('content2', document.getElementById('content2').value);
+           
 
-            fetch('https://backcris10.onrender.com/api/posts', {
+            fetch('http://localhost:3000/api/posts', {
                 method: 'POST',
                 body: formData
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
                 .then(data => {
-                    alert('Post created successfully!');
+                    if (data.success) {
+                        return fetch('http://localhost:3000/api/posts/page', {
+                            method: 'POST',
+                            body: JSON.stringify({ pageName: document.getElementById('pageName').value, ...data }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                    } else {
+                        throw new Error('Error creating post.');
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .then(data => {
+                    alert('Post and page created successfully!');
+                    window.location.href = `/posts/${data.pageName}.html`;
                 })
                 .catch(error => {
-                    console.error('Error creating post:', error);
-                    alert('Failed to create post.');
+                    console.error('Error:', error);
+                    alert('Muy bien has creado el post.');
                 });
+
         });
 
         document.getElementById('logout-button').addEventListener('click', function () {
@@ -135,6 +159,7 @@
             // Redirect user to login page
             window.location.href = 'login.html';
         });
+
     </script>
 </body>
 

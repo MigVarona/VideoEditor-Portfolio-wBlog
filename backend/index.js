@@ -6,9 +6,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
+const fs = require("fs");
 const User = require("./models/user");
-
 const postController = require("./controller/postController");
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -16,12 +17,24 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self' http://localhost:* data:; font-src 'self' data:; img-src 'self' data: http://localhost:*; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval';");
+  res.setHeader("Content-Security-Policy", "default-src 'self' http://localhost:* data:; font-src 'self' data:; img-src 'self' data: http://localhost:*; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com;");
   next();
 });
 
+
 app.use(cors());
 app.use(express.json());
+
+
+
+// Crear las carpetas necesarias si no existen
+const uploadsDir = path.join(__dirname, 'uploads');
+const postsDir = path.join(__dirname, 'public', 'posts');
+[uploadsDir, postsDir].forEach(dir => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+});
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -31,24 +44,28 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     console.error("Error connecting to MongoDB", error);
   });
 
-  const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "uploads/"); // Directorio donde se guardarán los archivos
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname); 
-    }
-  });
-  
-  const upload = multer({ storage: storage });
-  
-  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-  
-  app.post("/api/posts", upload.fields([{ name: 'imageFile', maxCount: 1 }, { name: 'imageFile2', maxCount: 1 }]), postController.createPost);
-  app.get("/api/posts", postController.getPosts);
-  app.get("/api/posts/:id", postController.getPostById);
-  app.put("/api/posts/:id", postController.updatePost);
-  app.delete("/api/posts/:id", postController.deletePost);
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/posts', express.static(path.join(__dirname, 'public', 'posts')));
+app.post("/api/posts/page", postController.createPost);
+app.post("/api/posts", upload.fields([{ name: 'imageFile', maxCount: 1 }, { name: 'imageFile2', maxCount: 1 }]), postController.createPost);
+app.get("/api/posts", postController.getPosts);
+app.get("/api/posts/:id", postController.getPostById);
+app.put("/api/posts/:id", postController.updatePost);
+app.delete("/api/posts/:id", postController.deletePost);
+app.use(express.static(__dirname));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.post("/api/login", async (req, res) => {
   try {

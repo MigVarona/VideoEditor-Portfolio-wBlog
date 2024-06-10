@@ -1,50 +1,4 @@
-const Post = require("../models/post");
-const fs = require("fs");
-const path = require("path");
 
-exports.getPosts = async (req, res) => {
-  try {
-    const posts = await Post.find().sort({ date: -1 });
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.getPostById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-    res.json(post);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-
-exports.createPost = async (req, res) => {
-  try {
-    const currentDate = Date.now();
-    const post = new Post({
-      title: req.body.title,
-      description: req.body.description,
-      author: req.body.author,
-      date: currentDate,
-      category: req.body.category,
-      content: req.body.content,
-      imageUrl: req.files["imageFile"][0].path,
-      secondImageUrl: req.files["imageFile2"][0].path,
-      tags: req.body.tags,
-      content2: req.body.content2,
-      videoUrl: req.body.videoUrl,
-    });
-
-    const newPost = await post.save();
-
-    const pageTitle = newPost.title.replace(/\s+/g, '-').toLowerCase(); // Convertir el título a un formato adecuado para el nombre del archivo
-    const newPageContent = `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -55,7 +9,7 @@ exports.createPost = async (req, res) => {
         <link href="blog.css" rel="stylesheet" type="text/css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${newPost.title}</title>
+        <title>video dos</title>
         <script src="main.js"></script>
         <style>
           body {
@@ -158,22 +112,22 @@ exports.createPost = async (req, res) => {
         <div class="container-medium w-container">
           <div class="blog-detail">
             <div class="blog-detail-date">Fecha del post</div>
-            <h1>${newPost.title}</h1>
+            <h1>video dos</h1>
             <div class="blog-detail-meta">
               <div class="blog-dash"></div>
-              <h2>Category: ${newPost.category}</h2>
+              <h2>Category: Camaras</h2>
             </div>
-            <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
-            <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
+            <img id="blog-image" loading="eager" alt="video dos" class="blog-detail-image" src="/uploads\mos-design-V9WkSZx4TLc-unsplash.jpg">
+            <img id="blog-image2" loading="eager" alt="video dos" class="blog-detail-image" src="/uploads\google-deepmind-QhDs9x7o9Jc-unsplash.jpg">
             <div class="blog-rich-text">
               <div class="w-richtext">
                 <h5></h5>
-                <p>${newPost.content2}</p>
+                <p>aaa</p>
                 <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
-                  <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
+                  <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/-ChLT7b2Gj8" style="margin-top: 50px;"></iframe>
                 </figure>
                 <h5></h5>
-                <p>${newPost.content}</p>
+                <p>aa</p>
               </div>
             </div>
           </div>
@@ -182,68 +136,4 @@ exports.createPost = async (req, res) => {
     </div>
   </body>
   </html>
-    `;
-
-    const newPagePath = path.join(
-      __dirname,
-      "..",
-      "public",
-      "posts",
-      `${pageTitle}.html`
-    );
-    fs.writeFileSync(newPagePath, newPageContent);
-
-    // Enviar una respuesta con un objeto que incluye la propiedad 'success'
-    res.status(201).json({ success: true, data: newPost });
-  } catch (error) {
-    console.error("Error creating post:", error);
-    res.status(400).json({ success: false, message: error.message });
-  }
-};
-
-exports.updatePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-
-    if (req.body.title != null) {
-      post.title = req.body.title;
-    }
-    if (req.body.description != null) {
-      post.description = req.body.description;
-    }
-
-    const updatedPost = await post.save();
-    res.json(updatedPost);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-exports.deletePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-
-    await post.remove();
-    res.json({ message: "Deleted post" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-exports.getPostTitleById = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post == null) {
-      return res.status(404).json({ message: "Cannot find post" });
-    }
-    res.json({ title: post.title });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+    
