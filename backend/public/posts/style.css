@@ -9998,3 +9998,9 @@ c {
 .margen {
   margin-top: 100px !important;
 }
+
+@media (max-width: 768px) { /* Puedes ajustar el ancho máximo según tu definición de tamaño móvil */
+  #posts-container {
+      margin-top: 100px;
+  }
+}
