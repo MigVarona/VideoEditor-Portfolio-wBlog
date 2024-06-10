@@ -23,6 +23,7 @@ exports.getPostById = async (req, res) => {
   }
 };
 
+
 exports.createPost = async (req, res) => {
   try {
     const currentDate = Date.now();
