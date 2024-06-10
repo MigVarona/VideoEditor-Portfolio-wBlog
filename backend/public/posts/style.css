@@ -248,7 +248,6 @@ html.w-mod-touch * {
 .w-inline-block {
   max-width: 100%;
   display: inline-block;
-  margin-right: 60px;
 }
 
 .w-clearfix:before, .w-clearfix:after {
@@ -1432,7 +1431,6 @@ textarea.w-input, textarea.w-select {
 @media screen and (max-width: 767px) {
   .w-nav-brand {
     padding-left: 10px;
-    margin-left: 50px !important;
   }
 }
 
@@ -1860,7 +1858,6 @@ textarea.w-input, textarea.w-select {
   color: #333;
   text-decoration: none;
   position: relative;
-  margin-left: 60px;
 }
 
 .w-nav-link {
@@ -1991,7 +1988,6 @@ textarea.w-input, textarea.w-select {
 
   .w-nav-brand {
     padding-left: 10px;
-    margin-left: 30px;
   }
 }
 
@@ -2705,16 +2701,20 @@ c {
   justify-content: space-between;
   align-items: center;
   min-width: 100%;
-
-  padding-left: 15px !important;
-  padding-right: 15px !important;
-
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
 }
 
 .nav-menu {
   text-align: right;
   justify-content: flex-end;
   align-items: center;
+  display: flex;
+  
+  margin-left: auto;
 }
 
 .nav-link {
@@ -7331,10 +7331,7 @@ c {
     padding-top: 200px;
   }
 
-  .nav-container {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
+
 
   .coming-soon-video {
     max-width: 650px;
