@@ -63,7 +63,7 @@ exports.createPost = async (req, res) => {
         data-collapse="medium" role="banner" data-no-scroll="1" data-duration="400" data-doc-height="1">
         <div class="gradient"></div>
         <div class="nav-container w-container">
-            <div class="nav-menu-wrapper"><a href="index.html" class=" brand w-nav-brand"><img
+            <div class="nav-menu-wrapper"><a href="http://localhost:5502/index.html" class=" brand w-nav-brand"><img
                         src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
                 <nav role="navigation" class="nav-menu w-nav-menu">
                     <div class="tablet-menu"><a href="index.html" class="brand-tablet w-nav-brand"><img
