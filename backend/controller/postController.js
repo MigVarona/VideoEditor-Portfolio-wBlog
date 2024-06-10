@@ -56,107 +56,97 @@ exports.createPost = async (req, res) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>${newPost.title}</title>
         <script src="main.js"></script>
-        <style>
-          body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            padding: 50px;
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-          }
-        </style>
+       
       </head>
       <body>
-       <div data-animation="over-left" class="navbar-transparent w-nav" data-easing2="ease" data-easing="ease"
-    data-collapse="medium" role="banner" data-no-scroll="1" data-duration="400" data-doc-height="1">
-    <div class="gradient"></div>
-    <div class="nav-container w-container">
-      <div class="nav-menu-wrapper"><a href="http://localhost:5502/index.html" class=" brand w-nav-brand"><img
-            src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
-        <nav role="navigation" class="nav-menu w-nav-menu">
-          <div class="tablet-menu"><a href="http://localhost:5502/index.html" class="brand-tablet w-nav-brand"><img
-                src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
-            <div class="close-menu-button w-nav-button"><img src="http://localhost:5502/assets/flaticon home.png"
-                loading="lazy" alt="icon" height="16" class="nav-close-icon" /></div>
-          </div>
-          <div class="menu-wrap">
+      
 
-            <div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc3754"
-              class="nav-dropdown w-dropdown">
-              <div class="nav-dropdown-toggle w-dropdown-toggle">
-                <div class="clip">
-                  <div class="btn-banner-text">
-                    <a href="http://localhost:5502/about.html" style="color: white;">
-                      <div class="btn-title-text">About Me <span class="tablet-hidden">+</span>
-                      </div>
+          <div data-animation="over-left" class="navbar-transparent w-nav" data-easing2="ease" data-easing="ease"
+        data-collapse="medium" role="banner" data-no-scroll="1" data-duration="400" data-doc-height="1">
+        <div class="gradient"></div>
+        <div class="nav-container w-container">
+            <div class="nav-menu-wrapper"><a href="index.html" class=" brand w-nav-brand"><img
+                        src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
+                <nav role="navigation" class="nav-menu w-nav-menu">
+                    <div class="tablet-menu"><a href="index.html" class="brand-tablet w-nav-brand"><img
+                                src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
+                  
+                    </div>
+                    <div class="menu-wrap">
 
-                  </div>
+                        <div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc3754"
+                            class="nav-dropdown w-dropdown">
+                            <div class="nav-dropdown-toggle w-dropdown-toggle">
+                                <div class="clip">
+                                    <div class="btn-banner-text">
+                                        <a href="http://localhost:5502/about.html" style="color: white;">
+                                            <div class="btn-title-text">About Me <span class="tablet-hidden">+</span>
+                                            </div>
+
+                                    </div>
 
 
-                  <div class="btn-banner-text button-text-bottom">
-                    <div class="btn-title-text">About Me +</div></a>
-                  </div>
-                </div>
-              </div>
+                                    <div class="btn-banner-text button-text-bottom">
+                                        <div class="btn-title-text">About Me +</div></a>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc377a"
+                            class="nav-dropdown w-dropdown">
+                            <div class="nav-dropdown-toggle w-dropdown-toggle">
+                                <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
+                                <div class="clip">
+                                    <div class="btn-banner-text">
+                                        <div class="btn-title-text">Works <span class="tablet-hidden">+</span></div>
+                                    </div>
+                                    <div class="btn-banner-text button-text-bottom">
+                                        <div class="btn-title-text">Works +</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="nav-dropdown-list w-dropdown-list">
+                                <div class="nav-dropdown-link-wrapper"><a href="http://localhost:5502/education.html"
+                                        class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
+                                        </span>Education</a><a href="http://localhost:5502/entertaiment.html"
+                                        class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
+                                        </span>Entertaiment</a><a href="http://localhost:5502/corporate.html"
+                                        class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
+                                        </span>Corporate</a>
+
+                                </div>
+                            </nav>
+                        </div><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc379e" class="nav-link w-inline-block">
+                            <div class="clip">
+                                <div class="btn-banner-text">
+                                    <div class="btn-title-text"></div>
+                                </div>
+                                <div class="btn-banner-text button-text-bottom">
+                                    <div class="btn-title-text"></div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="nav-button-wrapper"><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc380e"
+                                href="contact.html" class="nav-button w-inline-block">
+                                <div class="clip">
+                                    <div class="btn-banner-text">
+                                        <div class="btn-title-text">Let&#x27;s Talk</div>
+                                    </div>
+                                    <div class="btn-banner-text button-text-bottom">
+                                        <div class="btn-title-text">Let&#x27;s Talk</div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </nav>
+                <div class="menu-button w-nav-button"><img
+                        src="https://assets-global.website-files.com/66095c4f9765fb9eae51e781/66095c4f9765fb9eae51e859_menu-btn.svg"
+                        loading="lazy" alt="icon" height="16" class="image-burger" /></div>
             </div>
-            <div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc377a"
-              class="nav-dropdown w-dropdown">
-              <div class="nav-dropdown-toggle w-dropdown-toggle">
-                <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
-                <div class="clip">
-                  <div class="btn-banner-text">
-                    <div class="btn-title-text">Works <span class="tablet-hidden">+</span></div>
-                  </div>
-                  <div class="btn-banner-text button-text-bottom">
-                    <div class="btn-title-text">Works +</div>
-                  </div>
-                </div>
-              </div>
-              <nav class="nav-dropdown-list w-dropdown-list">
-                <div class="nav-dropdown-link-wrapper"><a href="http://localhost:5502/education.html"
-                    class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                    </span>Education</a><a href="http://localhost:5502/entertaiment.html"
-                    class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                    </span>Entertaiment</a><a href="http://localhost:5502/corporate.html"
-                    class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                    </span>Corporate</a>
-
-                </div>
-              </nav>
-            </div><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc379e" class="nav-link w-inline-block">
-              <div class="clip">
-                <div class="btn-banner-text">
-                  <div class="btn-title-text"></div>
-                </div>
-                <div class="btn-banner-text button-text-bottom">
-                  <div class="btn-title-text"></div>
-                </div>
-              </div>
-            </a>
-
-            <div class="nav-button-wrapper"><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc380e"
-                href="http://localhost:5502/contact.html" class="nav-button w-inline-block">
-                <div class="clip">
-                  <div class="btn-banner-text">
-                    <div class="btn-title-text">Let&#x27;s Talk</div>
-                  </div>
-                  <div class="btn-banner-text button-text-bottom">
-                    <div class="btn-title-text">Let&#x27;s Talk</div>
-                  </div>
-                </div>
-              </a></div>
-          </div>
-        </nav>
-        <div class="menu-button w-nav-button"><img
-            src="https://assets-global.website-files.com/66095c4f9765fb9eae51e781/66095c4f9765fb9eae51e859_menu-btn.svg"
-            loading="lazy" alt="icon" height="16" class="image-burger" /></div>
-      </div>
+        </div>
     </div>
-  </div>
 
     <div id="posts-container">
       <div class="blog-detail-section section-spacing">
