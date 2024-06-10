@@ -45,7 +45,7 @@ exports.createPost = async (req, res) => {
     const pageTitle = newPost.title.replace(/\s+/g, "-").toLowerCase();
     const newPageContent = `
 <!DOCTYPE html>
-<html lang="en">
+<html data-wf-page="66095c4f9765fb9eae51e7eb">
 <head>
   <script src="jquery.js"></script>
   <script src="jquery2.js"></script>
@@ -55,7 +55,7 @@ exports.createPost = async (req, res) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${newPost.title}</title>
-  <script src="main.js"></script>
+  
 
 </head>
 <body>
@@ -292,6 +292,7 @@ exports.createPost = async (req, res) => {
             </div>
         </div>
     </footer>
+     <script src="main.js"></script>
 </body>
 </html>
 `;
