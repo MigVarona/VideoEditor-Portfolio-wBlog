@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
 const fs = require("fs");
+const cookieParser = require("cookie-parser"); 
 const User = require("./models/user");
 const postController = require("./controller/postController");
 const bodyParser = require('body-parser');
@@ -24,13 +25,11 @@ app.use((req, res, next) => {
     "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com; " +
     "frame-src 'self' https://www.youtube.com");
+
   next();
 });
 
-
-
-
-
+app.use(cookieParser());
 
 const corsOptions = {
   origin: '*', 
@@ -39,8 +38,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
