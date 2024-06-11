@@ -156,7 +156,7 @@
     <div class="blog-section" style="text-align: center;">
         <div class="container w-container">
             <div class="section-title">
-                <h3 class="heading-h6">Recent post</h3>
+                <h3 class="">Recent posts</h3>
             </div>
             <div class="w-dyn-list">
                 <div role="list" class="grid-blog w-dyn-items"></div>
@@ -196,8 +196,7 @@
                         image.src = `http://localhost:3000/${post.imageUrl}`;
                         image.alt = post.title;
                         image.classList.add('blog-image');
-                        image.style.maxWidth = '200px'; // Ajusta el tamaño máximo de la imagen
-
+                        image.style.maxWidth = '200px'; 
                         const imageLink = document.createElement('a'); // Create anchor element for image link
                         imageLink.href = `http://localhost:3000/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`; // Set the href attribute to the post URL
                         imageLink.classList.add('blog-image-link'); // Add class to the image link
