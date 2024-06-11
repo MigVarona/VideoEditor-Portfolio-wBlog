@@ -52,6 +52,8 @@ exports.createPost = async (req, res) => {
   <link rel="stylesheet" href="cloud.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${newPost.title}</title>
@@ -156,11 +158,11 @@ exports.createPost = async (req, res) => {
               <h6>${newPost.category}</h6>
           </div>
           <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
-          <p>${newPost.content2}</p>
+          <p style="margin-bottom: 20px;">${newPost.content}</p>
           <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
           <div class="blog-rich-text">
             <div class="w-richtext">
-               <p>${newPost.content}</p>
+               <p>${newPost.content2}</p>
               
               <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
                 <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
