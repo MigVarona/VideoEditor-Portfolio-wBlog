@@ -38,6 +38,8 @@ exports.createPost = async (req, res) => {
       tags: req.body.tags,
       content2: req.body.content2,
       videoUrl: req.body.videoUrl,
+      content3: req.body.content3,
+
     });
 
     const newPost = await post.save();
@@ -72,74 +74,103 @@ exports.createPost = async (req, res) => {
                                 src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
                   
                     </div>
-                    <div class="menu-wrap">
+                   <div class="menu-wrap">
 
-                        <div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc3754"
-                            class="nav-dropdown w-dropdown">
-                            <div class="nav-dropdown-toggle w-dropdown-toggle">
-                                <div class="clip">
-                                    <div class="btn-banner-text">
-                                        <a href="http://localhost:5502/about.html" style="color: white;">
-                                            <div class="btn-title-text">About Me <span class="tablet-hidden">+</span>
-                                            </div>
+						<div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc3754"
+							class="nav-dropdown w-dropdown">
+							<div class="nav-dropdown-toggle w-dropdown-toggle">
+								<div class="clip">
+									<div class="btn-banner-text">
+										<a href="http://localhost:5502/about.html" style="color: white;">
+											<div class="btn-title-text">About Me <span class="tablet-hidden">+</span>
+											</div>
 
-                                    </div>
+									</div>
 
 
-                                    <div class="btn-banner-text button-text-bottom">
-                                        <div class="btn-title-text">About Me +</div></a>
-                                    </div>
-                                </div>
-                            </div>
+									<div class="btn-banner-text button-text-bottom">
+										<div class="btn-title-text">About Me +</div></a>
+									</div>
+								</div>
+							</div>
 
-                        </div>
-                        <div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc377a"
-                            class="nav-dropdown w-dropdown">
-                            <div class="nav-dropdown-toggle w-dropdown-toggle">
-                                <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
-                                <div class="clip">
-                                    <div class="btn-banner-text">
-                                        <div class="btn-title-text">Works <span class="tablet-hidden">+</span></div>
-                                    </div>
-                                    <div class="btn-banner-text button-text-bottom">
-                                        <div class="btn-title-text">Works +</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <nav class="nav-dropdown-list w-dropdown-list">
-                                <div class="nav-dropdown-link-wrapper"><a href="http://localhost:5502/education.html"
-                                        class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                                        </span>Education</a><a href="http://localhost:5502/entertaiment.html"
-                                        class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                                        </span>Entertaiment</a><a href="http://localhost:5502/corporate.html"
-                                        class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-                                        </span>Corporate</a>
+						</div>
+						<div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc377a"
+							class="nav-dropdown w-dropdown">
+							<div class="nav-dropdown-toggle w-dropdown-toggle">
+								<div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
+								<div class="clip">
+									<div class="btn-banner-text">
+										<div class="btn-title-text">Works <span class="tablet-hidden">+</span></div>
+									</div>
+									<div class="btn-banner-text button-text-bottom">
+										<div class="btn-title-text">Works +</div>
+									</div>
 
-                                </div>
-                            </nav>
-                        </div><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc379e" class="nav-link w-inline-block">
-                            <div class="clip">
-                                <div class="btn-banner-text">
-                                    <div class="btn-title-text"></div>
-                                </div>
-                                <div class="btn-banner-text button-text-bottom">
-                                    <div class="btn-title-text"></div>
-                                </div>
-                            </div>
-                        </a>
+								</div>
 
-                        <div class="nav-button-wrapper"><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc380e"
-                                href="contact.html" class="nav-button w-inline-block">
-                                <div class="clip">
-                                    <div class="btn-banner-text">
-                                        <div class="btn-title-text">Let&#x27;s Talk</div>
-                                    </div>
-                                    <div class="btn-banner-text button-text-bottom">
-                                        <div class="btn-title-text">Let&#x27;s Talk</div>
-                                    </div>
-                                </div>
-                            </a></div>
-                    </div>
+							</div>
+
+							<nav class="nav-dropdown-list w-dropdown-list">
+								<div class="nav-dropdown-link-wrapper"><a href="http://localhost:5502/education.html"
+										class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
+										</span>Education</a><a href="http://localhost:5502/entertaiment.html"
+										class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
+										</span>Entertaiment</a><a href="http://localhost:5502/corporate.html"
+										class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
+										</span>Corporate</a>
+
+								</div>
+							</nav>
+						</div>
+
+						<div data-hover="true" data-delay="0" data-w-id="1bba802f-7b9e-f63d-4f08-053960cc3754"
+							class="nav-dropdown w-dropdown">
+							<div class="nav-dropdown-toggle w-dropdown-toggle">
+								<div class="clip">
+									<div class="btn-banner-text">
+										<a href="http://localhost:5502/post.html" style="color: white;">
+											<div class="btn-title-text">Blog <span class="tablet-hidden"></span>
+											</div>
+
+									</div>
+
+
+									<div class="btn-banner-text button-text-bottom">
+										<div class="btn-title-text">Blog</div></a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc379e" class="nav-link w-inline-block">
+							<div class="clip">
+								<div class="btn-banner-text">
+									<div class="btn-title-text"></div>
+								</div>
+								<div class="btn-banner-text button-text-bottom">
+									<div class="btn-title-text"></div>
+								</div>
+							</div>
+						</a>
+
+						<div class="nav-button-wrapper"><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc380e"
+								href="http://localhost:5502/contact.html" class="nav-button w-inline-block">
+								<div class="clip">
+									<div class="btn-banner-text">
+										<div class="btn-title-text">Let&#x27;s Talk</div>
+									</div>
+									<div class="btn-banner-text button-text-bottom">
+										<div class="btn-title-text">Let&#x27;s Talk</div>
+									</div>
+								</div>
+							</a></div>
+
+
+
+
+					</div>
                 </nav>
                 <div class="menu-button w-nav-button"><img
                         src="https://assets-global.website-files.com/66095c4f9765fb9eae51e781/66095c4f9765fb9eae51e859_menu-btn.svg"
@@ -158,16 +189,18 @@ exports.createPost = async (req, res) => {
               <h6>${newPost.category}</h6>
           </div>
           <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
-          <p style="margin-bottom: 20px;">${newPost.content}</p>
+          <p style="margin-bottom: 20px; color: white !important">${newPost.content}</p>
           <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
           <div class="blog-rich-text">
             <div class="w-richtext">
-               <p>${newPost.content2}</p>
+               <p style="color: white !important">${newPost.content2}</p>
               
               <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
                 <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
               </figure>
-              <h5></h5>
+               <div class="blog-rich-text">
+            <div class="w-richtext">
+               <p style="margin-top: 60px; color: white !important;">${newPost.content3}</p>
             
             </div>
           </div>

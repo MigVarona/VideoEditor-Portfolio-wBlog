@@ -92,6 +92,9 @@
         <label for="content2">Additional Content:</label>
         <textarea id="content2" name="content2" rows="10"></textarea>
 
+        <label for="content3">Additional Content:</label>
+        <textarea id="content3" name="content3" rows="10"></textarea>
+
   
 
         <button type="submit">Create Post</button>
@@ -109,6 +112,8 @@
             formData.append('videoUrl', document.getElementById('video').value);
             formData.append('content', document.getElementById('content').value);
             formData.append('content2', document.getElementById('content2').value);
+            formData.append('content3', document.getElementById('content3').value);
+
            
 
             fetch('http://localhost:3000/api/posts', {
