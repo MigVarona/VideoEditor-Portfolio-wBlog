@@ -67,11 +67,11 @@ exports.createPost = async (req, res) => {
         data-collapse="medium" role="banner" data-no-scroll="1" data-duration="400" data-doc-height="1">
         <div class="gradient"></div>
         <div class="nav-container w-container">
-            <div class="nav-menu-wrapper"><a href="http://localhost:5502/index.html" class=" brand w-nav-brand"><img
-                        src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
+            <div class="nav-menu-wrapper"><a href="https://www.crisgova.org/index.html" class=" brand w-nav-brand"><img
+                        src="flaticon home.png" loading="lazy" alt="logo" height="80" /></a>
                 <nav role="navigation" class="nav-menu w-nav-menu">
                     <div class="tablet-menu"><a href="index.html" class="brand-tablet w-nav-brand"><img
-                                src="http://localhost:5502/assets/flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
+                                src="flaticon home.png" loading="lazy" alt="logo" height="40" /></a>
                   
                     </div>
                    <div class="menu-wrap">
@@ -81,7 +81,7 @@ exports.createPost = async (req, res) => {
 							<div class="nav-dropdown-toggle w-dropdown-toggle">
 								<div class="clip">
 									<div class="btn-banner-text">
-										<a href="http://localhost:5502/about.html" style="color: white;">
+										<a href="https://www.crisgova.org/about.html" style="color: white;">
 											<div class="btn-title-text">About Me <span class="tablet-hidden">+</span>
 											</div>
 
@@ -112,11 +112,11 @@ exports.createPost = async (req, res) => {
 							</div>
 
 							<nav class="nav-dropdown-list w-dropdown-list">
-								<div class="nav-dropdown-link-wrapper"><a href="http://localhost:5502/education.html"
+								<div class="nav-dropdown-link-wrapper"><a href="https://www.crisgova.org/education.html"
 										class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-										</span>Education</a><a href="http://localhost:5502/entertaiment.html"
+										</span>Education</a><a href="https://www.crisgova.org/entertaiment.html"
 										class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
-										</span>Entertaiment</a><a href="http://localhost:5502/corporate.html"
+										</span>Entertaiment</a><a href="https://www.crisgova.org/corporate.html"
 										class="nav-dropdown-link w-dropdown-link"><span class="nav-dropdown-link-line">
 										</span>Corporate</a>
 
@@ -129,7 +129,7 @@ exports.createPost = async (req, res) => {
 							<div class="nav-dropdown-toggle w-dropdown-toggle">
 								<div class="clip">
 									<div class="btn-banner-text">
-										<a href="http://localhost:5502/post.html" style="color: white;">
+										<a href="https://www.crisgova.org/post.html" style="color: white;">
 											<div class="btn-title-text">Blog <span class="tablet-hidden"></span>
 											</div>
 
@@ -156,7 +156,7 @@ exports.createPost = async (req, res) => {
 						</a>
 
 						<div class="nav-button-wrapper"><a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc380e"
-								href="http://localhost:5502/contact.html" class="nav-button w-inline-block">
+								href="https://www.crisgova.org/contact.html" class="nav-button w-inline-block">
 								<div class="clip">
 									<div class="btn-banner-text">
 										<div class="btn-title-text">Let&#x27;s Talk</div>
