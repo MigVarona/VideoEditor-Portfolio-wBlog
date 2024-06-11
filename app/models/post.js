@@ -11,7 +11,9 @@ const postSchema = new mongoose.Schema({
     secondImageUrl: String, // Segundo campo de imagen
     tags: [String], 
     content2: String,
-    videoUrl: String
+    videoUrl: String,
+    content3: String
+
 });
 
 const Post = mongoose.model('Post', postSchema);

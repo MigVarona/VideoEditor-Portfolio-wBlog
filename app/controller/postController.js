@@ -38,6 +38,8 @@ exports.createPost = async (req, res) => {
       tags: req.body.tags,
       content2: req.body.content2,
       videoUrl: req.body.videoUrl,
+      content3: req.body.content3,
+
     });
 
     const newPost = await post.save();
@@ -187,16 +189,18 @@ exports.createPost = async (req, res) => {
               <h6>${newPost.category}</h6>
           </div>
           <img id="blog-image" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.imageUrl}">
-          <p style="margin-bottom: 20px;">${newPost.content}</p>
+          <p style="margin-bottom: 20px; color: white !important">${newPost.content}</p>
           <img id="blog-image2" loading="eager" alt="${newPost.title}" class="blog-detail-image" src="/${newPost.secondImageUrl}">
           <div class="blog-rich-text">
             <div class="w-richtext">
-               <p>${newPost.content2}</p>
+               <p style="color: white !important">${newPost.content2}</p>
               
               <figure style="padding-bottom: 56.206088992974244%;" class="w-richtext-align-fullwidth w-richtext-figure-type-video">
                 <iframe id="video" allowfullscreen="" frameborder="0" scrolling="no" src="${newPost.videoUrl}" style="margin-top: 50px;"></iframe>
               </figure>
-              <h5></h5>
+               <div class="blog-rich-text">
+            <div class="w-richtext">
+               <p style="margin-top: 60px; color: white !important;">${newPost.content3}</p>
             
             </div>
           </div>
