@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:3000/api/posts', {
+    fetch('https://crisgova.onrender.com/api/posts', {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(posts => {
-            const container = document.querySelector('.grid-blog'); // Obtenemos el contenedor de publicaciones
+            const container = document.querySelector('.grid-blog'); 
 
             // Limitamos las publicaciones a 4
             posts.slice(0, 4).forEach(post => {
@@ -26,26 +26,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 blogImageWrap.classList.add('blog-image-wrap');
 
                 const image = document.createElement('img');
-                image.src = `http://localhost:3000/${post.imageUrl}`;
+                image.src = `https://crisgova.onrender.com/${post.imageUrl}`;
                 image.alt = post.title;
                 image.classList.add('blog-image');
-                image.style.maxWidth = '200px'; // Ajusta el tamaño máximo de la imagen
+                image.style.maxWidth = '200px'; 
 
                 const imageLink = document.createElement('a'); // Create anchor element for image link
-                imageLink.href = `http://localhost:3000/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`; // Set the href attribute to the post URL
-                imageLink.classList.add('blog-image-link'); // Add class to the image link
-                imageLink.appendChild(image); // Append the image to the image link
+                imageLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`; // Set the href attribute to the post URL
+                imageLink.classList.add('blog-image-link'); 
+                imageLink.appendChild(image); 
 
                 blogImageWrap.appendChild(imageLink); // Append the image link to the image wrapper
 
                 const blogInfoContent = document.createElement('div');
                 blogInfoContent.classList.add('blog-info-content');
 
-                const postTitle = document.createElement('h6'); // Cambiado a h6 para un tamaño de título más pequeño
+                const postTitle = document.createElement('h6'); 
                 postTitle.classList.add('blog-title', 'heading-h6');
 
-                const titleLink = document.createElement('a'); // Enlace para el título
-                titleLink.href = `http://localhost:3000/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html `;
+                const titleLink = document.createElement('a'); 
+                titleLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html `;
                 titleLink.textContent = post.title;
                 postTitle.appendChild(titleLink);
 

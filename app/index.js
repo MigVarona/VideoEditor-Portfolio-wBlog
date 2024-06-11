@@ -18,12 +18,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", 
-    "default-src 'self' http://localhost:* data:; " +
+    "default-src 'self' http://localhost:* https://localhost:* data:; " +
     "font-src 'self' data: https://cdnjs.cloudflare.com https://assets.website-files.com/; " +
-    "img-src 'self' data: https://assets-global.website-files.com http://localhost:*; " +
+    "img-src 'self' data: https://assets-global.website-files.com https://localhost:*; " +
     "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com; " +
-    "frame-src 'self' https://www.youtube.com/");
+    "frame-src 'self' https://www.youtube.com");
   next();
 });
 
@@ -31,8 +31,19 @@ app.use((req, res, next) => {
 
 
 
-app.use(cors());
+
+const corsOptions = {
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+};
+
+app.use(cors(corsOptions));
+
+
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 

@@ -166,73 +166,77 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('http://localhost:3000/api/posts', {
+            fetch('https://crisgova.onrender.com/api/posts', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(posts => {
-                    const container = document.querySelector('.grid-blog'); // Obtenemos el contenedor de publicaciones
-
-                    // Limitamos las publicaciones a 4
-                    posts.slice(0, 4).forEach(post => {
-                        const blogItem = document.createElement('div');
-                        blogItem.classList.add('w-dyn-item');
-
-                        const postLink = document.createElement('a');
-                        postLink.href = `/blog/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}`;
-                        postLink.classList.add('blog-item', 'w-inline-block');
-
-                        const blogImageWrap = document.createElement('div');
-                        blogImageWrap.classList.add('blog-image-wrap');
-
-                        const image = document.createElement('img');
-                        image.src = `http://localhost:3000/${post.imageUrl}`;
-                        image.alt = post.title;
-                        image.classList.add('blog-image');
-                        image.style.maxWidth = '200px'; 
-                        const imageLink = document.createElement('a'); // Create anchor element for image link
-                        imageLink.href = `http://localhost:3000/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`; // Set the href attribute to the post URL
-                        imageLink.classList.add('blog-image-link'); // Add class to the image link
-                        imageLink.appendChild(image); // Append the image to the image link
-
-                        blogImageWrap.appendChild(imageLink); // Append the image link to the image wrapper
-
-                        const blogInfoContent = document.createElement('div');
-                        blogInfoContent.classList.add('blog-info-content');
-
-                        const postTitle = document.createElement('h6'); // Cambiado a h6 para un tamaño de título más pequeño
-                        postTitle.classList.add('blog-title', 'heading-h6');
-
-                        const titleLink = document.createElement('a'); // Enlace para el título
-                        titleLink.href = `http://localhost:3000/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html `;
-                        titleLink.textContent = post.title;
-                        postTitle.appendChild(titleLink);
-
-                        const authorInfo = document.createElement('div');
-                        authorInfo.classList.add('author-info');
-
-                        blogInfoContent.appendChild(postTitle);
-                        blogInfoContent.appendChild(authorInfo);
-
-                        postLink.appendChild(blogImageWrap);
-                        postLink.appendChild(blogInfoContent);
-
-                        blogItem.appendChild(postLink);
-
-                        container.appendChild(blogItem);
-                    });
-                })
-                .catch(error => console.error('Error:', error));
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(posts => {
+                const container = document.querySelector('.grid-blog'); // Get the container for posts
+    
+                // Limit the posts to 4
+                posts.slice(0, 4).forEach(post => {
+                    const blogItem = document.createElement('div');
+                    blogItem.classList.add('w-dyn-item');
+    
+                    const postLink = document.createElement('a');
+                    postLink.href = `/blog/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}`;
+                    postLink.classList.add('blog-item', 'w-inline-block');
+    
+                    const blogImageWrap = document.createElement('div');
+                    blogImageWrap.classList.add('blog-image-wrap');
+    
+                    const image = document.createElement('img');
+                    // Ensure the URL starts with a slash
+                    const imageUrl = post.imageUrl.startsWith('/') ? post.imageUrl : `/${post.imageUrl}`;
+                    image.src = `https://crisgova.onrender.com${imageUrl}`; // Updated to ensure the URL is HTTPS
+                    image.alt = post.title;
+                    image.classList.add('blog-image');
+                    image.style.maxWidth = '200px';
+    
+                    const imageLink = document.createElement('a');
+                    imageLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`;
+                    imageLink.classList.add('blog-image-link');
+                    imageLink.appendChild(image);
+    
+                    blogImageWrap.appendChild(imageLink);
+    
+                    const blogInfoContent = document.createElement('div');
+                    blogInfoContent.classList.add('blog-info-content');
+    
+                    const postTitle = document.createElement('h6'); // Changed to h6 for a smaller title size
+                    postTitle.classList.add('blog-title', 'heading-h6');
+    
+                    const titleLink = document.createElement('a'); // Link for the title
+                    titleLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`;
+                    titleLink.textContent = post.title;
+                    postTitle.appendChild(titleLink);
+    
+                    const authorInfo = document.createElement('div');
+                    authorInfo.classList.add('author-info');
+    
+                    blogInfoContent.appendChild(postTitle);
+                    blogInfoContent.appendChild(authorInfo);
+    
+                    postLink.appendChild(blogImageWrap);
+                    postLink.appendChild(blogInfoContent);
+    
+                    blogItem.appendChild(postLink);
+    
+                    container.appendChild(blogItem);
+                });
+            })
+            .catch(error => console.error('Error:', error));
         });
-
     </script>
+    
+    
 
     <div style="margin-top: 200px;" class="page-content-wrapper">
         <div class="top-page-content">
@@ -285,7 +289,7 @@
     <script src="main.js" type="text/javascript"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('http://localhost:3000/api/posts', {
+            fetch('https://crisgova.onrender.com/api/posts', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -313,7 +317,7 @@
                         const postTitle = document.createElement('h1');
                         postTitle.classList.add('blog-title', 'heading-h6');
                         const postLink = document.createElement('a');
-                        postLink.href = `http://localhost:3000/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`;
+                        postLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`;
                         postLink.textContent = post.title;
                         postTitle.appendChild(postLink);
     
@@ -331,14 +335,14 @@
                         blogDetailImage.loading = 'eager';
                         blogDetailImage.alt = 'Blog Image';
                         blogDetailImage.classList.add('blog-detail-image');
-                        blogDetailImage.src = `http://localhost:3000/${post.imageUrl}`;
+                        blogDetailImage.src = `https://crisgova.onrender.com/${post.imageUrl}`;
     
                         const blogDetailImage2 = document.createElement('img');
                         blogDetailImage2.id = 'blog-image2';
                         blogDetailImage2.loading = 'eager';
                         blogDetailImage2.alt = 'Blog Image 2';
                         blogDetailImage2.classList.add('blog-detail-image');
-                        blogDetailImage2.src = `http://localhost:3000/${post.secondImageUrl}`;
+                        blogDetailImage2.src = `https://crisgova.onrender.com/${post.secondImageUrl}`;
     
                         const blogRichText = document.createElement('div');
                         blogRichText.id = 'w-node-cbfa1dc0-5694-caf3-0c77-9876848d6f0e-89419815';
