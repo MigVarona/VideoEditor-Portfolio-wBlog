@@ -24,10 +24,19 @@ app.use((req, res, next) => {
     "img-src 'self' data: https://assets-global.website-files.com https://localhost:*; " +
     "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com; " +
-    "frame-src 'self' https://www.youtube.com");
+    "frame-src 'self' https://www.youtube.com https://*.youtube.com; " + // Permitir iframes de YouTube
+    "frame-ancestors 'self'; " + // Evitar que el contenido se cargue en iframes
+    "object-src 'none'; " + // No permitir la carga de objetos incorporados
+    "base-uri 'self'; " + // Restringir la URL base de la que pueden provenir los recursos
+    "form-action 'self'; " + // Restringir las ubicaciones que pueden ser utilizadas como destino de formularios
+    "manifest-src 'self'; " + // Restringir la ubicación de los archivos de manifiesto
+    "block-all-mixed-content; " + // Bloquear todas las solicitudes mixtas HTTP/HTTPS
+    "upgrade-insecure-requests; " // Intentar cargar todas las solicitudes HTTP a través de HTTPS automáticamente
+  );
 
   next();
 });
+
 
 app.use(cookieParser());
 
