@@ -95,8 +95,6 @@
         <label for="content3">Additional Content:</label>
         <textarea id="content3" name="content3" rows="10"></textarea>
 
-  
-
         <button type="submit">Create Post</button>
     </form>
 
@@ -104,29 +102,14 @@
         document.getElementById('create-post-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const formData = new FormData();
-            formData.append('title', document.getElementById('title').value);
-            formData.append('category', document.getElementById('category').value);
-            formData.append('imageFile', document.getElementById('imageFile').files[0]);
-            formData.append('imageFile2', document.getElementById('imageFile2').files[0]);
-            formData.append('videoUrl', document.getElementById('video').value);
-            formData.append('content', document.getElementById('content').value);
-            formData.append('content2', document.getElementById('content2').value);
-            formData.append('content3', document.getElementById('content3').value);
-
-           
+            const form = document.getElementById('create-post-form');
+            const formData = new FormData(form);
 
             fetch('https://crisgova.onrender.com/api/posts', {
                 method: 'POST',
                 body: formData
             })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                })
+                .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         return fetch('https://crisgova.onrender.com/api/posts/page', {
@@ -140,31 +123,24 @@
                         throw new Error('Error creating post.');
                     }
                 })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                })
+                .then(response => response.json())
                 .then(data => {
                     alert('Post and page created successfully!');
                     window.location.href = `/posts/${data.pageName}.html`;
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Muy bien has creado el post.');
+                    alert('Post and page created successfully!');
+                })
+                .finally(() => {
+                    form.reset();  // Borrar el formulario
                 });
-
         });
 
         document.getElementById('logout-button').addEventListener('click', function () {
-            // Remove JWT token from local storage
             localStorage.removeItem('token');
-            // Redirect user to login page
             window.location.href = 'login.html';
         });
-
     </script>
 </body>
 
