@@ -33,10 +33,8 @@ app.use((req, res, next) => {
     "block-all-mixed-content; " + // Bloquear todas las solicitudes mixtas HTTP/HTTPS
     "upgrade-insecure-requests; " // Intentar cargar todas las solicitudes HTTP a través de HTTPS automáticamente
   );
-
   next();
 });
-
 
 app.use(cookieParser());
 
@@ -50,8 +48,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 
 const uploadsDir = path.join(__dirname, 'uploads');
 const postsDir = path.join(__dirname, 'public', 'posts');
@@ -130,6 +126,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
   res.send('File uploaded successfully');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://crisgova.onrender.com/api/posts', {
+    fetch('https://crisgova.adaptable.app/api/posts', {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 blogImageWrap.classList.add('blog-image-wrap');
 
                 const image = document.createElement('img');
-                image.src = `https://crisgova.onrender.com/${post.imageUrl}`;
+                image.src = `https://crisgova.adaptable.app/${post.imageUrl}`;
                 image.alt = post.title;
                 image.classList.add('blog-image');
                 image.style.maxWidth = '200px'; 
 
                 const imageLink = document.createElement('a'); // Create anchor element for image link
-                imageLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`; // Set the href attribute to the post URL
+                imageLink.href = `https://crisgova.adaptable.app/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html`; // Set the href attribute to the post URL
                 imageLink.classList.add('blog-image-link'); 
                 imageLink.appendChild(image); 
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 postTitle.classList.add('blog-title', 'heading-h6');
 
                 const titleLink = document.createElement('a'); 
-                titleLink.href = `https://crisgova.onrender.com/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html `;
+                titleLink.href = `https://crisgova.adaptable.app/posts/${encodeURIComponent(post.title.toLowerCase().replace(/\s+/g, '-'))}.html `;
                 titleLink.textContent = post.title;
                 postTitle.appendChild(titleLink);
 
