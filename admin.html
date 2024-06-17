@@ -105,14 +105,14 @@
             const form = document.getElementById('create-post-form');
             const formData = new FormData(form);
 
-            fetch('https://crisgova.onrender.com/api/posts', {
+            fetch('https://crisgova.adaptable.app/api/posts', {
                 method: 'POST',
                 body: formData
             })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        return fetch('https://crisgova.onrender.com/api/posts/page', {
+                        return fetch('https://crisgova.adaptable.app/api/posts/page', {
                             method: 'POST',
                             body: JSON.stringify({ pageName: document.getElementById('pageName').value, ...data }),
                             headers: {
