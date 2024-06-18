@@ -11,6 +11,8 @@ const cookieParser = require("cookie-parser");
 const User = require("./models/user");
 const postController = require("./controller/postController");
 const bodyParser = require('body-parser');
+const nodemailer = require("nodemailer");
+
 
 dotenv.config();
 
@@ -121,6 +123,32 @@ const authenticateToken = (req, res, next) => {
     next();
   });
 };
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail', 
+  auth: {
+    user: process.env.EMAIL_USER, // Tu correo
+    pass: process.env.EMAIL_PASS  // Tu contraseña
+  }
+});
+
+app.post('/send-email', (req, res) => {
+  const { name, email, message } = req.body;
+
+  const mailOptions = {
+    from: email,
+    to: process.env.RECEIVER_EMAIL, 
+    subject: `Nuevo mensaje de ${name}`,
+    text: message
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).json({ error: error.toString() });
+    }
+    res.status(200).json({ message: 'Correo enviado correctamente' });
+  });
+});
 
 app.post("/upload", upload.single("file"), (req, res) => {
   res.send('File uploaded successfully');
