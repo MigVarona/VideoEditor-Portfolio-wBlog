@@ -26,14 +26,14 @@ app.use((req, res, next) => {
     "img-src 'self' data: https://assets-global.website-files.com https://localhost:*; " +
     "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://d3e54v103j8qbb.cloudfront.net https://assets-global.website-files.com; " +
-    "frame-src 'self' https://www.youtube.com https://*.youtube.com; " + // Permitir iframes de YouTube
-    "frame-ancestors 'self'; " + // Evitar que el contenido se cargue en iframes
-    "object-src 'none'; " + // No permitir la carga de objetos incorporados
-    "base-uri 'self'; " + // Restringir la URL base de la que pueden provenir los recursos
-    "form-action 'self'; " + // Restringir las ubicaciones que pueden ser utilizadas como destino de formularios
-    "manifest-src 'self'; " + // Restringir la ubicación de los archivos de manifiesto
-    "block-all-mixed-content; " + // Bloquear todas las solicitudes mixtas HTTP/HTTPS
-    "upgrade-insecure-requests; " // Intentar cargar todas las solicitudes HTTP a través de HTTPS automáticamente
+    "frame-src 'self' https://www.youtube.com https://*.youtube.com; " + 
+    "frame-ancestors 'self'; " + 
+    "object-src 'none'; " + 
+    "base-uri 'self'; " + 
+    "form-action 'self'; " + 
+    "manifest-src 'self'; " + 
+    "block-all-mixed-content; " + 
+    "upgrade-insecure-requests; " 
   );
   next();
 });
@@ -127,8 +127,8 @@ const authenticateToken = (req, res, next) => {
 const transporter = nodemailer.createTransport({
   service: 'gmail', 
   auth: {
-    user: process.env.EMAIL_USER, // Tu correo
-    pass: process.env.EMAIL_PASS  // Tu contraseña
+    user: process.env.EMAIL_USER, 
+    pass: process.env.EMAIL_PASS  
   }
 });
 
@@ -136,10 +136,10 @@ app.post('/send-email', (req, res) => {
   const { name, email, message } = req.body;
 
   const mailOptions = {
-    from: email,
+    from: process.env.EMAIL_USER,
     to: process.env.RECEIVER_EMAIL, 
     subject: `Nuevo mensaje de ${name}`,
-    text: message
+    text: `Mensaje: ${message}\n\nDe: ${name} (${email})`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -149,6 +149,24 @@ app.post('/send-email', (req, res) => {
     res.status(200).json({ message: 'Correo enviado correctamente' });
   });
 });
+
+
+app.post('/send-test-email', (req, res) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.RECEIVER_EMAIL,
+    subject: 'Correo de prueba',
+    text: 'Este es un correo de prueba para verificar el envío de correos.'
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).json({ error: error.toString() });
+    }
+    res.status(200).json({ message: 'Correo de prueba enviado correctamente', info });
+  });
+});
+
 
 app.post("/upload", upload.single("file"), (req, res) => {
   res.send('File uploaded successfully');
