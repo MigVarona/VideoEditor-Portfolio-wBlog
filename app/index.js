@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
@@ -99,7 +99,7 @@ app.post("/api/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid username or password" });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcryptjs.compare(password, user.password);
     if (!passwordMatch) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
