@@ -1,5 +1,5 @@
 # Usa la última versión de Node.js como imagen base
-FROM node:latest
+FROM node:16
 
 # Establece el directorio de trabajo en la carpeta de la aplicación
 WORKDIR /app
@@ -12,7 +12,7 @@ RUN npm install
 COPY app/ .
 
 # Expone el puerto en el que tu aplicación se ejecuta
-EXPOSE 3000
+EXPOSE 80
 
 # Comando para iniciar la aplicación
 CMD ["node", "index.js"]
