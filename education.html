@@ -285,7 +285,7 @@
 
 
                 
-                <div id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
+                <div onclick="openModal3()" id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
                     class="collection-list-wrapper w-dyn-list">
                     <div role="list" class="collection-list w-dyn-items">
                         <div data-w-id="66a4ebf9-9b7d-6a7b-e0a9-63899f805cb0" style="opacity:0" role="listitem"
@@ -297,8 +297,7 @@
                                         href="https://youtu.be/QJ3J0JRB0Fo" class="home-1-work-link h4">Tutorial gafas
                                         locas</a>
                                 </div>
-                            </div><a target="_blank" href="https://youtu.be/QJ3J0JRB0Fo"
-                                class="collection-2-link w-inline-block">
+                            </div>
                                 <div data-video-urls="https://youtu.be/QJ3J0JRB0Fo" data-autoplay="true"
                                     data-loop="true" data-wf-ignore="true"
                                     class="small-video w-background-video w-background-video-atom"><video
@@ -315,6 +314,17 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="myModal3" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal3()">&times;</span>
+                        <iframe src="https://www.youtube.com/embed/QJ3J0JRB0Fo?si=2mfyg3eUdVm_r03q" title="YouTube video player" allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
@@ -380,6 +390,21 @@
 
         window.onclick = function(event) {
             var modal = document.getElementById("myModal2");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function openModal3() {
+            document.getElementById("myModal3").style.setProperty('display', 'flex', 'important');
+        }
+
+        function closeModal3() {
+            document.getElementById("myModal3").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal3");
             if (event.target == modal) {
                 modal.style.display = "none";
             }
