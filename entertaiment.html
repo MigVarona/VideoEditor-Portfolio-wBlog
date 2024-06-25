@@ -218,7 +218,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
+
+                <div onclick="openModal()" id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
                     class="collection-list-wrapper w-dyn-list">
                     <div role="list" class="collection-list w-dyn-items">
                         <div data-w-id="66a4ebf9-9b7d-6a7b-e0a9-63899f805cb0" style="opacity:0" role="listitem"
@@ -231,8 +232,7 @@
                                         href="https://www.youtube.com/watch?v=LpBTjx6yEz0&t=1s"
                                         class="home-1-work-link h4">Video clip "cha Cha Cha" </a>
                                 </div>
-                            </div><a target="_blank" href="https://www.youtube.com/watch?v=LpBTjx6yEz0&t=1s"
-                                class="collection-2-link w-inline-block">
+                            </div>
                                 <div>
                                     <img src="assets/entertaiment/3 chachacha.jpg" alt="Image" class="video-image"
                                         data-wf-ignore="true" />
@@ -243,6 +243,15 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <iframe src="https://www.youtube.com/embed/LpBTjx6yEz0?si=qwzVwKA37N4Qs5pe" title="YouTube video player" allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+
+
                 <div id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
                     class="collection-list-wrapper w-dyn-list">
                     <div role="list" class="collection-list w-dyn-items">
@@ -268,7 +277,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
+
+                <div onclick="openModal2()" id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
                     class="collection-list-wrapper w-dyn-list">
                     <div role="list" class="collection-list w-dyn-items">
                         <div data-w-id="66a4ebf9-9b7d-6a7b-e0a9-63899f805cb0" style="opacity:0" role="listitem"
@@ -281,8 +291,7 @@
                                         href="https://www.youtube.com/watch?v=X6H5Mhr9T4k"
                                         class="home-1-work-link h4">El vuelo</a>
                                 </div>
-                            </div><a href="https://www.youtube.com/watch?v=X6H5Mhr9T4k"
-                                class="collection-2-link w-inline-block">
+                            </div>
                                 <div>
                                     <img src="assets/entertaiment/5 el vuelo.jpg" alt="Image" class="video-image"
                                         data-wf-ignore="true" />
@@ -293,6 +302,14 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="myModal2" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal2()">&times;</span>
+                        <iframe src="https://www.youtube.com/embed/X6H5Mhr9T4k?si=96Vp-z7j2UIlcD0m" title="YouTube video player" allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+
                 <div id="w-node-_66a4ebf9-9b7d-6a7b-e0a9-63899f805cae-ae51e7e7"
                     class="collection-list-wrapper w-dyn-list">
                     <div role="list" class="collection-list w-dyn-items">
@@ -357,6 +374,37 @@
         type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
     <script src="main.js" type="text/javascript"></script>
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.setProperty('display', 'flex', 'important');
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function openModal2() {
+            document.getElementById("myModal2").style.setProperty('display', 'flex', 'important');
+        }
+
+        function closeModal2() {
+            document.getElementById("myModal2").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal2");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
