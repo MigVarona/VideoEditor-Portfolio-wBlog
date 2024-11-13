@@ -47,15 +47,15 @@
 	<link href="assets/flaticon home.png" rel="shortcut icon" type="image/x-icon" />
 	<link href="assets/flaticon home.png" rel="apple-touch-icon" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQTZ4PVJBD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQTZ4PVJBD"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
-  gtag('config', 'G-RQTZ4PVJBD');
-</script>
+		gtag('config', 'G-RQTZ4PVJBD');
+	</script>
 </head>
 
 <body>
@@ -120,7 +120,7 @@
 							</nav>
 						</div>
 
-						
+
 						<a data-w-id="1bba802f-7b9e-f63d-4f08-053960cc379e" class="nav-link w-inline-block">
 							<div class="clip">
 								<div class="btn-banner-text">
@@ -244,26 +244,20 @@
 		</div>
 	</section>
 
-	<section class="section without-space" onclick="openModal()">
+	<section class="section without-space" onclick="openModal('myModal1')">
 		<div class="w-layout-blockcontainer full-container w-container">
 			<div class="w-layout-grid grid-2">
-				<div id="w-node-_581a8698-499a-99d3-47af-e9d075f350b9-ae51e7eb"
-					class="collection-list-wrapper w-dyn-list">
+				<div id="w-node-_581a8698-499a-99d3-47af-e9d075f350b9-ae51e7eb" class="collection-list-wrapper w-dyn-list">
 					<div role="list" class="collection-list w-dyn-items">
-						<div data-w-id="581a8698-499a-99d3-47af-e9d075f350bb" role="listitem"
-							class="collection-item-small w-dyn-item">
+						<div data-w-id="581a8698-499a-99d3-47af-e9d075f350bb" role="listitem" class="collection-item-small w-dyn-item">
 							<div data-w-id="581a8698-499a-99d3-47af-e9d075f350bc" class="block-project">
 								<a href="#" class="home-1-work-link h4">Demo reel</a>
 							</div>
 							<div data-poster-url="https://assets-global.website-files.com/66095c4f9765fb9eae51e781/660acaed9ac1d4daad1a8527_6150670-sd_640_338_25fps-poster-00001.jpg"
-								data-autoplay="true" data-loop="true" data-wf-ignore="true"
-								class="small-video w-background-video w-background-video-atom">
-								<video id="581a8698-499a-99d3-47af-e9d075f350bf-video" autoplay="" loop=""
-									style="background-image:url(assets/reel-protada-RED.jpg)" muted="" playsinline=""
-									data-wf-ignore="true" data-object-fit="cover">
+								data-autoplay="true" data-loop="true" data-wf-ignore="true" class="small-video w-background-video w-background-video-atom">
+								<video id="581a8698-499a-99d3-47af-e9d075f350bf-video" autoplay="" loop="" style="background-image:url(assets/reel-protada-RED.jpg)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
 									<source src="assets/demo reel loop v03.mp4" data-wf-ignore="true" />
 								</video>
-								<div class="hidden">This is some text inside of a div block.</div>
 							</div>
 						</div>
 					</div>
@@ -272,12 +266,10 @@
 		</div>
 	</section>
 
-	<div id="myModal" class="modal">
+	<div id="myModal1" class="modal">
 		<div class="modal-content">
-			<span class="close" onclick="closeModal()">&times;</span>
-			<iframe
-				src="https://go.screenpal.com/player/cZfuQZVMOP2?controls=1&share=1&download=1&embed=1&cl=1&width=1280&height=720&overlays=1&ff=1"
-				allowfullscreen="true"></iframe>
+			<span class="close" onclick="closeModal('myModal1', 'iframe1')">&times;</span>
+			<iframe id="iframe1" src="https://www.youtube.com/embed/ep_jB4RC-M4" allowfullscreen></iframe>
 		</div>
 	</div>
 
